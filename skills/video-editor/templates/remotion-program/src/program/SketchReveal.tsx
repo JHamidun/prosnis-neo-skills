@@ -12,6 +12,43 @@ export type SketchData = {slide: number; src: string; w: number; h: number; them
 const cache = new Map<string, SketchData>();
 const pending = new Map<string, Promise<SketchData>>();
 
+// fix4 (25.09): the art and the clean slide are drawn by SVG <image>, which Remotion does NOT wait for. Under render
+// load a tab screenshotted frames before the PNG was decoded -> black/empty slide-window flashes at every
+// sketch->slide settle (163 frames in 19 of 22 settles of v4). Recipe proven on the stories (0 dropouts / 5 videos):
+// every PNG an SVG <image> uses is fetched + img.decode()'d BEFORE continueRender, the decoded HTMLImageElements
+// stay alive for the tab's lifetime (module array), <image decoding="sync">, willChange on the cross-fading layer.
+const decodedImgs: HTMLImageElement[] = [];
+const decoding = new Map<string, Promise<void>>();
+const decodeUrl = (url: string) => {
+  if (!decoding.has(url)) {
+    decoding.set(
+      url,
+      new Promise<void>((ok, bad) => {
+        const im = new Image();
+        decodedImgs.push(im);
+        im.onload = () => {
+          im.decode().catch(() => undefined).then(() => ok());
+        };
+        im.onerror = () => bad(new Error('art ' + url));
+        im.src = url;
+      }),
+    );
+  }
+  return decoding.get(url)!;
+};
+
+// delayRender until an extra PNG (the clean slide of the settle cross-fade) is decoded in this tab.
+const useDecoded = (path: string | undefined) => {
+  const url = path ? staticFile(path) : undefined;
+  const [handle] = useState(() => (url ? delayRender('decode ' + url) : null));
+  useEffect(() => {
+    if (!url || handle === null) return;
+    decodeUrl(url)
+      .then(() => continueRender(handle))
+      .catch((e) => cancelRender(e));
+  }, [url, handle]);
+};
+
 const load = (path: string) => {
   if (!pending.has(path)) {
     pending.set(
@@ -19,12 +56,7 @@ const load = (path: string) => {
       fetch(staticFile(path))
         .then((r) => r.json())
         .then(async (d: SketchData) => {
-          await new Promise<void>((res, rej) => {
-            const img = new Image();
-            img.onload = () => res();
-            img.onerror = () => rej(new Error('art ' + d.src));
-            img.src = staticFile(d.src);
-          });
+          await decodeUrl(staticFile(d.src));
           cache.set(path, d);
           return d;
         }),
@@ -131,6 +163,7 @@ const Pen: React.FC<{x: number; y: number; accent: boolean}> = ({x, y, accent}) 
 export const SketchReveal: React.FC<{spec: SketchSpec; uid: string; slideImg?: string}> = ({spec, uid, slideImg}) => {
   const f = useCurrentFrame();
   const data = useSketch(spec.data);
+  useDecoded(slideImg); // the clean slide is decoded in this tab before any frame of this feed is captured
   if (!data) return null;
   const times = elementTimes(data, spec);
   const lastEnd = Math.max(...Object.values(times).map((t) => t.start + t.dur));
@@ -176,13 +209,13 @@ export const SketchReveal: React.FC<{spec: SketchSpec; uid: string; slideImg?: s
                     <path d={e.finish} fill="white" opacity={clamp01((u - 1) / 0.08)} />
                   </mask>
                 </defs>
-                <image href={staticFile(data.src)} width={data.w} height={data.h} mask={`url(#${id})`} />
+                <image href={staticFile(data.src)} width={data.w} height={data.h} mask={`url(#${id})`} {...{decoding: 'sync'}} />
                 {pt ? <g opacity={penO}><Pen x={pt[0]} y={pt[1]} accent={(live ?? lastDone)!.c === 1} /></g> : null}
               </g>
             );
           })
         : null}
-      {settleP > 0 ? <image href={staticFile(slideImg ?? data.src)} width={data.w} height={data.h} opacity={settleP} /> : null}
+      {settleP > 0 ? <image href={staticFile(slideImg ?? data.src)} width={data.w} height={data.h} opacity={settleP} style={{willChange: 'opacity'}} {...{decoding: 'sync'}} /> : null}
     </svg>
   );
 };
@@ -241,7 +274,7 @@ export const SketchArt: React.FC<{data: string; ids: string[]; start: number; bo
                 <path d={e.finish} fill="white" opacity={clamp01((u - 1) / 0.08)} />
               </mask>
             </defs>
-            <image href={staticFile(data.src)} width={data.w} height={data.h} mask={`url(#${id})`} />
+            <image href={staticFile(data.src)} width={data.w} height={data.h} mask={`url(#${id})`} {...{decoding: 'sync'}} />
           </g>
         );
       })}
