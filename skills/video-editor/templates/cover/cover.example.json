@@ -1,0 +1,19 @@
+{
+ "$note": "Copy to cover.json next to cover.html. title_html may use <span class=\"hl\">accent</span> and <br>. speaker_png = the cutout in assets/ (cutout.py writes it and rim_<name>.png).",
+ "category": "ВЕБИНАР",
+ "title_html": "<Заголовок>, <span class=\"hl\"><акцент></span>:<br><вторая строка>",
+ "subtitle": "Запись открытого эфира · <дд.мм>",
+ "date": "<дд.мм.гггг>",
+ "duration": "≈ 2 часа · кейсы и демо",
+ "tags": ["#ИИ-агенты", "#Вайбкодинг", "#ИИ-видео"],
+ "speaker_name": "<Имя Фамилия>",
+ "speaker_role": "<роль · компания>",
+ "speaker_png": "speaker_<t>.png",
+ "tg_url": "https://t.me/<handle>",
+ "tg_label": "@<handle>",
+ "rutube_url": "https://rutube.ru/channel/<id>/",
+ "wordmark": "<бренд строчными>",
+ "pick": {"src": "<запись с крупным планом спикера>.mp4", "t0": 0.0, "t1": 30.0,
+          "crop": [0.30, 0.10, 0.78, 1.00], "face": [0.4545, 0.25, 0.6205, 0.6935], "speaker": "<Имя Фамилия>"},
+ "critique": {"constraints": "Жёсткие условия заказчика (их НЕ оспаривать): спикер — реальный кадр из записи эфира; дата верна; QR-коды — канон серии."}
+}

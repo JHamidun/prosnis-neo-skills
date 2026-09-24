@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>__DOC_TITLE__ — саммари эфира</title>
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  @page {
+    @top-left { content: "__DOC_TITLE__ · саммари"; font: 500 7pt "JetBrains Mono"; letter-spacing: 0.08em; color: #8B8794; }
+    @top-right { content: "__BRAND_HEADER__"; font: 700 7pt "JetBrains Mono"; letter-spacing: 0.16em; color: #F26941; }
+    @bottom-left { content: "Открытый эфир · 23.09.2026"; font: 500 7pt "JetBrains Mono"; color: #8B8794; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 700 7.5pt "JetBrains Mono"; color: #F26941; }
+  }
+  .sec { margin: 0 0 9mm; }
+  .sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; break-after: avoid; }
+  .sec-ul { width: 58mm; height: 3.8mm; margin: 1.4mm 0 5mm -1mm; break-after: avoid; }
+  .sec-ul svg { width: 100%; height: 100%; }
+  .sec-note { font-family: var(--hand); font-size: 14pt; color: var(--coral-dim); transform: rotate(-3deg); white-space: nowrap; }
+  .page-break { break-before: page; }
+
+  /* about */
+  .about { display: grid; grid-template-columns: 1fr 60mm; gap: 8mm; align-items: start; }
+  .about p { margin: 0 0 3.2mm; font-size: 10.6pt; line-height: 1.62; }
+  .about p:first-of-type { font-size: 12pt; line-height: 1.55; color: var(--ink); }
+  .stat-card { border-radius: 5mm; padding: 6mm 5.5mm 4mm; color: var(--on-dark); position: relative; overflow: hidden;
+    background: radial-gradient(60mm 50mm at 90% 110%, rgba(242,105,65,0.25), transparent 70%), linear-gradient(160deg, #171A3C, #070918); }
+  .stat { padding: 2mm 0 2.6mm; border-bottom: 0.25mm solid rgba(255,255,255,0.10); }
+  .stat:last-of-type { border-bottom: 0; }
+  .stat b { display: block; font-weight: 800; font-size: 21pt; letter-spacing: -0.02em; color: #fff; line-height: 1.05; }
+  .stat:nth-of-type(odd) b { color: var(--coral); }
+  .stat span { font-size: 8.6pt; color: var(--lavender); }
+  .stat-card img { width: 46mm; margin: 2mm auto 0; opacity: 0.95; }
+
+  /* chapters list */
+  .chap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; break-inside: avoid; }
+  .chap { display: grid; grid-template-columns: 7mm 1fr auto; gap: 2.2mm; align-items: baseline; padding: 1.35mm 0; border-bottom: 0.25mm dashed rgba(1,3,52,0.14); }
+  .chap-n { font-weight: 800; font-size: 11pt; color: transparent; -webkit-text-stroke: 0.25mm var(--coral); }
+  .chap-t { font-weight: 600; font-size: 8.4pt; line-height: 1.28; color: var(--ink); }
+
+  /* ideas */
+  .idea { display: grid; grid-template-columns: 15mm 1fr 52mm; gap: 5mm; align-items: center; border-radius: 5mm; padding: 5mm 6mm 5mm 4mm;
+          margin: 0 0 4mm; break-inside: avoid; position: relative; overflow: hidden; }
+  .idea.paper { background: var(--paper-2); border: 0.3mm solid var(--paper-edge); }
+  .idea.dark { background: linear-gradient(160deg, #171A3C, #070918); color: var(--on-dark); }
+  .idea.dark .h3 { color: #fff; }
+  .idea.dark p { color: #D7D8E8; }
+  .idea p { margin: 1.6mm 0 0; font-size: 9.6pt; line-height: 1.55; }
+  .idea .h3 { font-size: 12.5pt; font-weight: 800; letter-spacing: -0.01em; }
+  .num { position: relative; width: 15mm; height: 13mm; display: flex; align-items: center; justify-content: center; }
+  .num .circle-mark { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .num span { font-family: var(--hand); font-weight: 700; font-size: 22pt; color: var(--coral); line-height: 1; }
+  .idea .art { display: flex; justify-content: center; align-items: center; }
+  .idea .art img { max-width: 52mm; max-height: 30mm; object-fit: contain; }
+
+  /* cases */
+  .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .case { border-radius: 5mm; overflow: hidden; break-inside: avoid; display: flex; flex-direction: column; }
+  .case.paper { background: var(--paper-2); border: 0.3mm solid var(--paper-edge); }
+  .case.dark { background: linear-gradient(165deg, #171A3C, #070918); color: var(--on-dark); }
+  .case .art { height: 30mm; display: flex; align-items: center; justify-content: center; padding: 4mm 5mm 0; }
+  .case .art img { max-width: 100%; max-height: 26mm; object-fit: contain; }
+  .case .art.doodle-art { justify-content: flex-start; height: 14mm; padding-top: 5mm; }
+  .case .body { padding: 3mm 5.5mm 5mm; }
+  .case .h3 { font-size: 11.5pt; font-weight: 800; margin-top: 1.6mm; }
+  .case.dark .h3 { color: #fff; }
+  .case p { margin: 1.8mm 0 0; font-size: 8.9pt; line-height: 1.52; }
+  .case.dark p { color: #D7D8E8; }
+  .facts { display: flex; flex-wrap: wrap; gap: 1.4mm; margin-top: 2.6mm; }
+  .fact { font-size: 7.6pt; font-weight: 700; border-radius: 1.4mm; padding: 0.5mm 1.8mm; background: var(--coral-soft); color: var(--coral-dim); }
+  .case.dark .fact { background: rgba(242,105,65,0.16); color: #FFB49C; }
+
+  /* world */
+  .world { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5mm 5mm; }
+  .wi { padding: 2.6mm 0 0; border-top: 0.6mm solid var(--coral); break-inside: avoid; }
+  .wi b { display: block; font-weight: 800; font-size: 15pt; letter-spacing: -0.02em; color: var(--ink); line-height: 1.1; white-space: nowrap; }
+  .wi span { display: block; font-size: 8.4pt; line-height: 1.42; margin-top: 1.6mm; color: var(--ink-body); }
+  .foot { font-size: 8pt; color: var(--ink-muted); margin-top: 3mm; }
+
+  /* chat page (full dark) */
+  .chatpage { padding: 15mm 16mm 14mm; display: flex; flex-direction: column; }
+  .chatpage > * { position: relative; z-index: 1; }
+  .chatpage .h-display { font-size: 30pt; color: #fff; margin: 12mm 0 0; }
+  .chatpage .lead-d { color: var(--lavender); font-size: 10.5pt; line-height: 1.5; max-width: 140mm; margin: 3mm 0 0; }
+  .cstats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 7mm; }
+  .cstat { border-radius: 4mm; padding: 4.5mm 4mm; background: #0C0F2C; border: 0.3mm solid rgba(255,255,255,0.09); }
+  .cstat b { display: block; font-weight: 800; font-size: 22pt; color: #fff; letter-spacing: -0.02em; line-height: 1.05; }
+  .cstat:nth-child(odd) b { color: var(--coral); }
+  .cstat span { display: block; font-size: 8.2pt; color: var(--lavender); margin-top: 1.4mm; line-height: 1.35; }
+  .polls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin-top: 6mm; }
+  .poll { border-radius: 4mm; padding: 4.5mm 4.5mm 4mm; background: #0C0F2C; border: 0.3mm solid rgba(255,255,255,0.09); }
+  .poll .pt { font-weight: 800; font-size: 9.6pt; color: #fff; line-height: 1.3; min-height: 10mm; }
+  .bar { margin-top: 2.6mm; }
+  .bar .bl { display: flex; justify-content: space-between; font-size: 7.8pt; color: var(--lavender); }
+  .bar .bl b { font-family: var(--mono); color: #fff; }
+  .bar .track { height: 2.4mm; border-radius: 2mm; background: rgba(255,255,255,0.07); margin-top: 0.9mm; overflow: hidden; }
+  .bar .fill { height: 100%; border-radius: 2mm; background: #5B5F95; }
+  .bar.correct .fill { background: var(--coral); }
+  .bar.correct .bl span { color: #FFB49C; font-weight: 700; }
+  .poll .pn { font-size: 7.4pt; color: var(--muted-dark); margin-top: 2.6mm; line-height: 1.35; }
+  .qa { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 6mm; }
+  .qa-item { border-radius: 4mm; padding: 4mm 4.5mm; background: rgba(12,15,44,0.9); border: 0.3mm solid rgba(255,255,255,0.09); }
+  .qa-q { font-size: 9pt; color: #fff; font-weight: 700; line-height: 1.4; }
+  .qa-q em { font-style: normal; font-family: var(--mono); font-weight: 500; font-size: 7pt; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); display: block; margin-bottom: 1mm; }
+  .qa-a { font-size: 8.6pt; color: #D0D2E4; line-height: 1.48; margin-top: 1.8mm; padding-left: 3mm; border-left: 0.6mm solid var(--coral-line); }
+  .chatpage .ct-hand { width: 60mm; }
+  .thanks { margin-top: auto; display: flex; align-items: center; gap: 3mm; }
+  .thanks .hand { font-size: 19pt; color: var(--lavender); transform: rotate(-2deg); }
+
+  /* raffle */
+  .raffle-panel { border-radius: 5mm; padding: 6mm 6mm 5mm; color: var(--on-dark); break-inside: avoid; position: relative; overflow: hidden;
+    background: radial-gradient(80mm 60mm at 100% 0%, rgba(242,105,65,0.18), transparent 70%), linear-gradient(160deg, #171A3C, #070918); }
+  .raffle-top { display: grid; grid-template-columns: 1fr 44mm; gap: 6mm; align-items: center; }
+  .raffle-top p { margin: 2mm 0 0; font-size: 9.6pt; line-height: 1.55; color: #D7D8E8; }
+  .raffle-top img { width: 38mm; }
+  .winners { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 4.5mm; }
+  .win { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "wl wl wl" "tk hd pr"; column-gap: 3mm; row-gap: 1mm; align-items: center;
+         border-radius: 3.5mm; padding: 3mm 4mm; background: rgba(255,255,255,0.04); border: 0.3mm solid rgba(255,255,255,0.08); }
+  .win .wl { grid-area: wl; font-family: var(--mono); font-size: 6.8pt; letter-spacing: 0.12em; text-transform: uppercase; color: #7FB2FF; }
+  .win .tk { grid-area: tk; font-weight: 800; font-size: 17pt; color: #fff; line-height: 1; }
+  .win .tk sup { font-size: 8pt; margin-right: 0.5mm; }
+  .win .hd { grid-area: hd; font-weight: 700; font-size: 10.5pt; color: #fff; }
+  .win .hd small { font-weight: 500; font-size: 8.5pt; color: var(--lavender); margin-left: 2mm; }
+  .win .prize { grid-area: pr; }
+  .win.grand { grid-template-areas: "wl wl wl" "hd hd pr"; background: linear-gradient(90deg, rgba(255,208,20,0.14), rgba(255,208,20,0.04)); border-color: rgba(255,208,20,0.45); }
+  .win.grand .wl { color: var(--yellow); }
+  .win.grand .hd { font-size: 13pt; }
+  .prize { font-family: var(--mono); font-weight: 700; font-size: 11pt; border-radius: 2mm; padding: 0.8mm 2.6mm; color: var(--coral); background: rgba(242,105,65,0.14); border: 0.3mm solid rgba(242,105,65,0.4); }
+  .win.grand .prize { color: var(--yellow); background: rgba(255,208,20,0.12); border-color: rgba(255,208,20,0.45); }
+  .rkey { margin-top: 4mm; font-family: var(--mono); font-size: 7.4pt; color: var(--muted-dark); line-height: 1.6; word-break: break-all; }
+  .rkey b { color: #fff; font-weight: 700; }
+  .rnote { margin-top: 3mm; font-size: 9pt; color: var(--on-dark); }
+</style>
+</head>
+<body>
+<script id="data" type="application/json">/*__DATA__*/</script>
+<div id="root"></div>
+<script src="assets/sketch.js"></script>
+<script>
+(function () {
+  const { esc, underline, cover, ctaPage, circleMark, starBurst, rays } = window.VA;
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const doc = D.doc;
+  const provisional = (D.meta || {}).timecodes !== 'final';
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const ink = (art) => (D.art_ink || {})[art] || 'dark';           // 'light' strokes need a dark card
+  const theme = (art) => (art && ink(art) === 'light') ? 'dark' : 'paper';
+  const chapterTc = (n) => ((D.chapters || []).find((c) => c.n === n) || {}).tc || '';
+  const head = (eyebrow, title, note) => `<div class="sec-head"><div><div class="eyebrow">${esc(eyebrow)}</div><h2 class="h1">${esc(title)}</h2></div>${note ? `<div class="sec-note">${esc(note)}</div>` : ''}</div><div class="sec-ul">${underline({ stroke: 5 })}</div>`;
+
+  let html = cover({
+    eyebrow: doc.eyebrow, kind: doc.kind, title: doc.title, title_accent: doc.title_accent, subtitle: doc.subtitle,
+    lead: doc.lead, host: doc.host, host_role: doc.host_role, co: doc.co, date: doc.date, provisional,
+    chips: D.cover_chips || D.stats.map((s) => `${s.value} ${s.label}`),
+  }, { art: 'hand-pills', note: 'самое важное — за 10 минут чтения' });
+
+  // about + stats + chapters
+  html += `<section class="sec">${head('Коротко', D.about.title)}
+    <div class="about"><div>${D.about.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+      <div class="stat-card"><div class="eyebrow" style="color:var(--lavender)">Эфир в цифрах</div>
+        ${D.stats.map((s) => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('')}
+        </div></div></section>`;
+  if (Array.isArray(D.chapters) && D.chapters.length) {
+    const half = Math.ceil(D.chapters.length / 2);
+    const col = (arr) => arr.map((c) => `<div class="chap"><span class="chap-n">${pad2(c.n)}</span><span class="chap-t">${esc(c.title)}</span><span class="tc">${esc(c.tc)}</span></div>`).join('');
+    html += `<section class="sec" style="break-inside:avoid">${head('Маршрут', 'Главы эфира', provisional ? 'таймкоды — черновые' : 'таймкоды — по записи')}
+      <div class="chap-grid"><div>${col(D.chapters.slice(0, half))}</div><div>${col(D.chapters.slice(half))}</div></div></section>`;
+  }
+
+  // ideas
+  html += `<section class="sec page-break">${head('Главное за 2 минуты', 'Семь мыслей эфира', 'если запомнить только это')}
+    ${D.ideas.map((it, i) => `<div class="idea ${theme(it.art)}">
+      <div class="num">${circleMark()}<span>${i + 1}</span></div>
+      <div><div class="h3">${esc(it.title)}</div><p>${esc(it.text)}</p></div>
+      <div class="art">${it.art ? `<img src="assets/art/${esc(it.art)}.png" alt="">` : ''}</div></div>`).join('')}
+  </section>`;
+
+  // cases
+  html += `<section class="sec">${head('Что показали', 'Демо и кейсы', 'всё собрано агентами')}
+    <div class="cases">${D.cases.map((c) => `<div class="case ${theme(c.art)}">
+      ${c.art ? `<div class="art"><img src="assets/art/${esc(c.art)}.png" alt=""></div>` : `<div class="art doodle-art">${starBurst()}</div>`}
+      <div class="body"><div class="eyebrow">Глава ${pad2(c.chapter)}${chapterTc(c.chapter) ? ' · ' + esc(chapterTc(c.chapter)) : ''}</div>
+        <div class="h3">${esc(c.title)}</div><p>${esc(c.text)}</p>
+        ${(c.facts || []).length ? `<div class="facts">${c.facts.map((f) => `<span class="fact">${esc(f)}</span>`).join('')}</div>` : ''}</div></div>`).join('')}
+    </div></section>`;
+
+  // world
+  html += `<section class="sec" style="break-inside:avoid">${head('Что изменилось', D.world.title)}
+    <div class="world">${D.world.items.map((w) => `<div class="wi"><b>${esc(w.value)}</b><span>${esc(w.text)}</span></div>`).join('')}</div>
+    <div class="foot">${esc(D.world.footnote)}</div></section>`;
+
+  // raffle
+  const R = D.raffle;
+  html += `<section class="sec" style="break-inside:avoid">${head('Финал эфира', R.title)}
+    <div class="raffle-panel">
+      <div class="raffle-top"><div><div class="eyebrow">Розыгрыш подписок Claude и Codex</div><p>${esc(R.lead)}</p></div><img src="assets/art/drum.png" alt=""></div>
+      <div class="winners"><div class="win grand"><div class="wl">★ ${esc(R.grand.badge)}</div><div class="hd">${esc(R.grand.handle)}<small>${esc(R.grand.note)}</small></div><span class="prize">${esc(R.grand.prize)}</span></div>
+        ${R.winners.map((w) => `<div class="win"><div class="wl">Приз ${w.n} · барабан</div><div class="tk"><sup>№</sup>${w.ticket}</div><div class="hd">${esc(w.handle)}</div><span class="prize">${esc(w.prize)}</span></div>`).join('')}</div>
+      <div class="rkey">ключ розыгрыша: <b>${esc(R.key)}</b><br>отпечаток списка: ${esc(R.fingerprint)}<br>${esc(R.tickets)}</div>
+      <div class="rnote">${esc(R.note)}</div>
+    </div></section>`;
+
+  // chat (full dark page)
+  const C = D.chat;
+  const maxOf = (p) => Math.max(1, ...p.bars.map((b) => b.value));
+  html += `<section class="page-full stage chatpage">
+    <div class="cv-top">${window.VA.logo(true)}<div class="eyebrow">Пульс чата</div></div>
+    <h2 class="h-display">${esc(C.title)}</h2>
+    <div class="ct-underline">${underline({ stroke: 5 })}</div>
+    <p class="lead-d">${esc(C.lead)}</p>
+    <div class="cstats">${C.stats.map((s) => `<div class="cstat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('')}</div>
+    <div class="polls">${C.polls.map((p) => `<div class="poll"><div class="eyebrow">Опрос в чате</div><div class="pt">${esc(p.title)}</div>
+      ${p.bars.map((b) => `<div class="bar ${b.correct ? 'correct' : ''}"><div class="bl"><span>${esc(b.label)}</span><b>${b.value}</b></div>
+        <div class="track"><div class="fill" style="width:${Math.max(2, Math.round(100 * b.value / maxOf(p)))}%"></div></div></div>`).join('')}
+      <div class="pn">${esc(p.note)}</div></div>`).join('')}</div>
+    <div class="qa">${C.questions.map((q) => `<div class="qa-item"><div class="qa-q"><em>Вопрос из чата · ${esc(q.who)}</em>${esc(q.q)}</div><div class="qa-a">${esc(q.a)}</div></div>`).join('')}</div>
+    ${C.thanks ? `<div class="thanks"><svg class="doodle" viewBox="0 0 60 54" width="13mm" height="12mm" aria-hidden="true"><path d="M30 50 C 12 38, 3 27, 5 16 C 7 6, 20 2, 30 14 C 38 2, 54 4, 55 17 C 56 29, 45 40, 30 50" style="stroke:var(--coral);stroke-width:2.6"/><path d="M13 16 C 14 11, 18 9, 21 10" style="stroke:var(--coral);stroke-width:2"/></svg><span class="hand">${esc(C.thanks)}</span></div>` : ''}
+  </section>`;
+
+  html += ctaPage(D.shared);
+  document.getElementById('root').innerHTML = html;
+  document.title = `${doc.title} — саммари эфира ${doc.date}`;
+  const imgs = [...document.images];
+  Promise.all([document.fonts.ready, ...imgs.map((i) => i.complete ? 1 : new Promise((r) => { i.onload = i.onerror = r; }))])
+    .then(() => { window.__RENDER_DONE__ = { images: imgs.length, broken: imgs.filter((i) => !i.naturalWidth).map((i) => i.getAttribute('src')) }; });
+})();
+</script>
+</body>
+</html>

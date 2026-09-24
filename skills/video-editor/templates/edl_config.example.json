@@ -1,0 +1,1739 @@
+{
+ "$note": "edl/edl_config.json of a job: everything that was a constant of the reference builder (build_full_edl.py) - pieces, cuts, chapters, deck videos, sketch/board/hero sets, the raffle scene, polls, teaser, intro, music cues. Numbers are the reference webinar's (to show the scale); texts are placeholders. Schema: references/webinar-montage.md S10.",
+ "edl_id": "full",
+ "extra_sources": {
+  "intro": {
+   "timeline_key": "intro_plaud"
+  }
+ },
+ "audio_only_sources": [
+  "intro"
+ ],
+ "ranges": [
+  [
+   "intro",
+   280.25,
+   564.75
+  ],
+  [
+   "part1",
+   2.568,
+   2357.58
+  ],
+  [
+   "part2",
+   3.6,
+   4703.4
+  ]
+ ],
+ "cuts": {
+  "intro": [
+   {
+    "gap": [
+     334.68,
+     339.48
+    ],
+    "note": "<зачем вырезано>"
+   }
+  ],
+  "part1": [
+   {
+    "gap": [
+     333.08,
+     343.07
+    ],
+    "note": "<зачем вырезано>"
+   },
+   {
+    "gap": [
+     447.05,
+     451.63
+    ],
+    "note": "<зачем вырезано>"
+   },
+   {
+    "gap": [
+     647.8,
+     653.08
+    ],
+    "note": "<зачем вырезано>"
+   },
+   {
+    "words": [
+     [
+      784.5,
+      787.0,
+      "^Сейчас$",
+      -0.06
+     ],
+     [
+      793.5,
+      795.5,
+      "^Вот",
+      -0.12
+     ]
+    ],
+    "note": "<зачем вырезано>"
+   }
+  ],
+  "part2": [
+   {
+    "gap": [
+     4431.17,
+     4439.09
+    ],
+    "keep": 0.8,
+    "note": "<зачем вырезано>"
+   }
+  ]
+ },
+ "chapters": [
+  {
+   "n": 1,
+   "src": "intro",
+   "t": 280.25,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 3
+  },
+  {
+   "n": 2,
+   "src": "part1",
+   "t": 213.12,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": null
+  },
+  {
+   "n": 3,
+   "src": "part1",
+   "t": 766.08,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": null
+  },
+  {
+   "n": 4,
+   "src": "part1",
+   "t": 922.64,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 14
+  },
+  {
+   "n": 5,
+   "src": "part1",
+   "t": 1722.68,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": null
+  },
+  {
+   "n": 6,
+   "src": "part2",
+   "t": 410.0,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 27
+  },
+  {
+   "n": 7,
+   "src": "part2",
+   "t": 786.44,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 30,
+   "art_ids": [
+    "e4"
+   ]
+  },
+  {
+   "n": 8,
+   "src": "part2",
+   "t": 1561.32,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 39
+  },
+  {
+   "n": 9,
+   "src": "part2",
+   "t": 1878.08,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 42
+  },
+  {
+   "n": 10,
+   "src": "part2",
+   "t": 2559.48,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 49
+  },
+  {
+   "n": 11,
+   "src": "part2",
+   "t": 2827.08,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 54
+  },
+  {
+   "n": 12,
+   "src": "part2",
+   "t": 3105.04,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": null,
+   "art_slide": 60
+  },
+  {
+   "n": 13,
+   "src": "part2",
+   "t": 3347.36,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": null
+  },
+  {
+   "n": 14,
+   "src": "part2",
+   "t": 3574.92,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 68
+  },
+  {
+   "n": 15,
+   "src": "part2",
+   "t": 4209.88,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": null
+  },
+  {
+   "n": 16,
+   "src": "part2",
+   "t": 4550.08,
+   "lines": [
+    "<строка 1>",
+    "<строка 2>"
+   ],
+   "note": "<подпись карточки>",
+   "art_slide": 76
+  }
+ ],
+ "screen_runs_extra": {
+  "intro": [
+   [
+    280.25,
+    338.5,
+    "slide",
+    2
+   ],
+   [
+    338.5,
+    433.3,
+    "slide",
+    1
+   ],
+   [
+    433.3,
+    529.6,
+    "slide",
+    2
+   ],
+   [
+    529.6,
+    564.75,
+    "slide",
+    3
+   ]
+  ]
+ },
+ "scene_kinds": {
+  "live_demo": "demo",
+  "raffle_app": "drum",
+  "camera": "speaker"
+ },
+ "screen_fixups": [
+  {
+   "src": "part2",
+   "from": 364.0,
+   "to": 366.8,
+   "slide": 27
+  },
+  {
+   "src": "part2",
+   "from": 408.8,
+   "to": 411.64,
+   "slide": 27
+  }
+ ],
+ "black_to_slide": {
+  "part2": 76
+ },
+ "clips": {
+  "main": {
+   "part1": "full/clips/p1_main.mp4",
+   "part2": "full/clips/p2_main.mp4"
+  },
+  "cam": {
+   "part1": "full/clips/p1_cam.mp4",
+   "part2": "full/clips/p2_cam.mp4"
+  },
+  "main_size": [
+   2560,
+   1608
+  ]
+ },
+ "cam2": {
+  "speaker_prefix": "<Имя со-ведущего>",
+  "clips": {
+   "part1": {
+    "file": "full/clips/p1_cam2.mp4",
+    "start": 1700.0,
+    "live": [
+     1700.0,
+     null
+    ]
+   },
+   "part2": {
+    "file": "full/clips/p2_cam2.mp4",
+    "start": 0.0,
+    "live": [
+     0.0,
+     240
+    ]
+   }
+  }
+ },
+ "zoom_feeds": {
+  "demo": {
+   "prefix": "z",
+   "layout": "full",
+   "crop": [
+    0,
+    84,
+    2560,
+    1440
+   ],
+   "xfade": 6
+  },
+  "drum": {
+   "prefix": "d",
+   "layout": "full",
+   "crop": [
+    0,
+    119,
+    2560,
+    1440
+   ],
+   "xfade": 6,
+   "blur": [
+    {
+     "rect": [
+      0,
+      0,
+      2560,
+      118
+     ]
+    }
+   ]
+  },
+  "speaker": {
+   "prefix": "c",
+   "layout": "speaker",
+   "crop": [
+    300,
+    190,
+    2100,
+    1181
+   ],
+   "drift": 0.015,
+   "xfade": 8
+  }
+ },
+ "video_dir": "full/video/",
+ "videos": {
+  "1": [
+   {
+    "src": "intro",
+    "t0": 359.5,
+    "file": "s00_cold_open.mp4",
+    "dur": 22.7,
+    "loop": false,
+    "rect": [
+     0,
+     0,
+     1,
+     1
+    ]
+   }
+  ],
+  "7": [
+   {
+    "src": "part1",
+    "t0": {
+     "vsync_vis": "07"
+    },
+    "file": "quiz_v2_sequence.mp4",
+    "dur": 50.4,
+    "loop": false,
+    "rect": [
+     0.05,
+     0.08,
+     0.9,
+     0.9
+    ],
+    "chip": "force"
+   },
+   {
+    "src": "part1",
+    "t0": {
+     "vsync_vis": "07",
+     "plus": 50.4
+    },
+    "file": "quiz_v2_grid.mp4",
+    "dur": 14.0,
+    "loop": true,
+    "rect": [
+     0.05,
+     0.08,
+     0.9,
+     0.9
+    ],
+    "chip": false
+   }
+  ],
+  "12": [
+   {
+    "src": "part1",
+    "t0": 766.08,
+    "file": "deepfake_will_smith.mp4",
+    "dur": 54.6,
+    "loop": false,
+    "rect": [
+     0.1,
+     0.1,
+     0.286,
+     0.8
+    ],
+    "chip": false,
+    "end_at": {
+     "vsync": "12"
+    }
+   },
+   {
+    "src": "part1",
+    "t0": {
+     "vsync": "12"
+    },
+    "file": "deepfake_will_smith.mp4",
+    "dur": 54.6,
+    "loop": false,
+    "rect": [
+     0.1,
+     0.1,
+     0.286,
+     0.8
+    ]
+   }
+  ],
+  "23": [
+   {
+    "src": "part1",
+    "t0": {
+     "vsync_vis": "23a"
+    },
+    "file": "scroll_landing_web.mp4",
+    "dur": 22.966,
+    "loop": true,
+    "rect": [
+     0.1,
+     0.2,
+     0.8,
+     0.72
+    ]
+   },
+   {
+    "src": "part2",
+    "t0": 366.8,
+    "file": "scroll_landing_web.mp4",
+    "dur": 22.966,
+    "loop": true,
+    "rect": [
+     0.1,
+     0.2,
+     0.8,
+     0.72
+    ]
+   }
+  ],
+  "37": [
+   {
+    "src": "part2",
+    "t0": 1416.9,
+    "file": "google_project_genie_worlds.mp4",
+    "dur": 17.966,
+    "loop": true,
+    "rect": [
+     0.05,
+     0.3,
+     0.55,
+     0.6
+    ]
+   }
+  ],
+  "54": [
+   {
+    "src": "part2",
+    "t0": {
+     "vsync_vis": "54"
+    },
+    "file": "recording_x8.mp4",
+    "dur": 25.966,
+    "loop": false,
+    "rect": [
+     0.44,
+     0.34,
+     0.5,
+     0.5
+    ]
+   }
+  ],
+  "58": [
+   {
+    "src": "part2",
+    "t0": {
+     "vsync_vis": "58"
+    },
+    "file": "scout_x8.mp4",
+    "dur": 29.6,
+    "loop": false,
+    "rect": [
+     0,
+     0,
+     1,
+     1
+    ]
+   }
+  ],
+  "61": [
+   {
+    "src": "part2",
+    "t0": 3187.4,
+    "file": "crm_lms_cut.mp4",
+    "dur": 36.6,
+    "loop": true,
+    "rect": [
+     0.13,
+     0.2,
+     0.74,
+     0.74
+    ]
+   }
+  ],
+  "63": [
+   {
+    "src": "part2",
+    "t0": {
+     "vsync_vis": "63"
+    },
+    "file": "scroll_marketing.mp4",
+    "dur": 18.666,
+    "loop": true,
+    "rect": [
+     0.15,
+     0.1,
+     0.7,
+     0.7
+    ]
+   }
+  ],
+  "64": [
+   {
+    "src": "part2",
+    "t0": 3331.92,
+    "file": "scroll_dev.mp4",
+    "dur": 18.666,
+    "loop": true,
+    "rect": [
+     0.03,
+     0.27,
+     0.455,
+     0.455
+    ]
+   },
+   {
+    "src": "part2",
+    "t0": 3331.92,
+    "file": "scroll_product.mp4",
+    "dur": 18.666,
+    "loop": true,
+    "rect": [
+     0.515,
+     0.27,
+     0.455,
+     0.455
+    ]
+   }
+  ],
+  "65": [
+   {
+    "src": "part2",
+    "t0": {
+     "vsync": "65"
+    },
+    "file": "final_nodate.mp4",
+    "dur": 62.633,
+    "loop": false,
+    "rect": [
+     0,
+     0,
+     1,
+     1
+    ]
+   }
+  ],
+  "66": [
+   {
+    "src": "part2",
+    "t0": {
+     "vsync_vis": "66"
+    },
+    "file": "agent_log_timelapse.mp4",
+    "dur": 20.0,
+    "loop": true,
+    "rect": [
+     0.54,
+     0.3,
+     0.4,
+     0.46
+    ]
+   }
+  ],
+  "67": [
+   {
+    "src": "part2",
+    "t0": 3526.92,
+    "file": "suno_browser_x8.mp4",
+    "dur": 28.666,
+    "loop": true,
+    "rect": [
+     0.46,
+     0.3,
+     0.48,
+     0.48
+    ]
+   }
+  ]
+ },
+ "video_studio_slides": [
+  7
+ ],
+ "video_chip_text": "▶ ВИДЕО",
+ "sketch_slides": [
+  2,
+  3,
+  4,
+  5,
+  14,
+  27,
+  29,
+  30,
+  33,
+  35,
+  36,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  49,
+  53,
+  57,
+  60,
+  62,
+  68,
+  70,
+  71,
+  72,
+  73,
+  74,
+  76
+ ],
+ "drift": {
+  "base": 0.022,
+  "step": 0.004,
+  "cap": 0.045
+ },
+ "max_punch_ins": 30,
+ "cue_fallback": {
+  "3": [
+   "part1",
+   0,
+   35.56
+  ]
+ },
+ "board": {
+  "4": null,
+  "14": null,
+  "17": null,
+  "21": null,
+  "28": null,
+  "29": {
+   "text": "<рукописная заметка>",
+   "cue": [
+    "part2",
+    764.0
+   ],
+   "doodles": [
+    {
+     "type": "label",
+     "from": "bf0+8",
+     "to": "bf1",
+     "at": [
+      26,
+      500
+     ],
+     "text": "<надпись>",
+     "size": 48,
+     "rotate": -5
+    },
+    {
+     "type": "arrow",
+     "from": "bf0+16",
+     "to": "bf1",
+     "at": [
+      120,
+      640
+     ],
+     "to_content": [
+      640,
+      810
+     ],
+     "bend": 30
+    },
+    {
+     "type": "label",
+     "from": "bf0+20",
+     "to": "bf1",
+     "at": [
+      520,
+      34
+     ],
+     "text": "<надпись>",
+     "size": 48,
+     "rotate": -2,
+     "color": "#FFD014"
+    }
+   ]
+  },
+  "33": null,
+  "36": null,
+  "42": null,
+  "49": null,
+  "60": null,
+  "70": null,
+  "76": null
+ },
+ "hero_slides": [
+  3,
+  11,
+  13,
+  21,
+  25,
+  26,
+  27,
+  30,
+  36,
+  39,
+  45,
+  54,
+  67,
+  72,
+  74
+ ],
+ "hero_min_gap_s": 200,
+ "face_xl_highlights": [
+  [
+   "P1",
+   485.28
+  ],
+  [
+   "P2",
+   1881.8
+  ],
+  [
+   "P2",
+   3215.39
+  ],
+  [
+   "P1",
+   2157.24
+  ]
+ ],
+ "events": [
+  {
+   "type": "raffle",
+   "src": "part2",
+   "y_offset": 119,
+   "prizes": [
+    {
+     "t": 4292.0,
+     "refine": null,
+     "name": "<ник/имя победителя 0, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 110,
+     "row_circle": false
+    },
+    {
+     "t": 4349.4,
+     "refine": [
+      4348.5,
+      4352.5,
+      "<regex слова, на котором барабан остановился>",
+      -0.4
+     ],
+     "name": "<ник/имя победителя 1, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 70,
+     "row_circle": true
+    },
+    {
+     "t": 4381.0,
+     "refine": [
+      4376,
+      4384,
+      "<regex слова, на котором барабан остановился>",
+      -0.4
+     ],
+     "name": "<ник/имя победителя 2, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 70,
+     "row_circle": true
+    },
+    {
+     "t": 4412.5,
+     "refine": [
+      4410,
+      4414,
+      "<regex слова, на котором барабан остановился>",
+      -0.4
+     ],
+     "name": "<ник/имя победителя 3, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 70,
+     "row_circle": true
+    },
+    {
+     "t": 4430.2,
+     "refine": [
+      4429,
+      4433,
+      "<regex слова, на котором барабан остановился>",
+      -0.4
+     ],
+     "name": "<ник/имя победителя 4, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 70,
+     "row_circle": true
+    },
+    {
+     "t": 4481.1,
+     "refine": [
+      4473,
+      4478,
+      "<regex слова, на котором барабан остановился>",
+      0.0
+     ],
+     "name": "<ник/имя победителя 5, как одобрил владелец>",
+     "prize": "<приз>",
+     "kicker": "ПОБЕДИТЕЛЬ · ПРИЗ <n> ИЗ <m>",
+     "extra": "<билет / условие>",
+     "confetti": 110,
+     "row_circle": false
+    }
+   ],
+   "banner_s": 7,
+   "confetti": {
+    "origin": [
+     960,
+     470
+    ],
+    "spread": 2.6
+   },
+   "stars": [
+    {
+     "at": [
+      92,
+      330
+     ],
+     "lead_f": 8
+    },
+    {
+     "at": [
+      1830,
+      330
+     ],
+     "lead_f": 12
+    }
+   ],
+   "stars_s": 4,
+   "row_circle": {
+    "rect": [
+     476,
+     542,
+     1116,
+     149
+    ],
+    "lead_f": 4,
+    "dur": 14,
+    "hold_s": 6,
+    "width": 8
+   },
+   "final": {
+    "t_roll": 4466.7,
+    "feed_at_t": 4470.0,
+    "moves": [
+     {
+      "t": 4468.0,
+      "rect": [
+       494,
+       305,
+       1067,
+       600
+      ],
+      "dur": 30
+     },
+     {
+      "t": 4474.5,
+      "rect": [
+       540,
+       330,
+       978,
+       550
+      ],
+      "dur": 150
+     },
+     {
+      "t": 4483.9,
+      "rect": [
+       0,
+       0,
+       2560,
+       1440
+      ],
+      "dur": 30
+     }
+    ],
+    "marks": [
+     {
+      "type": "circle",
+      "rect": [
+       476,
+       542,
+       1116,
+       149
+      ],
+      "t": 4481.2,
+      "dur": 14,
+      "to_t": 4489.0,
+      "width": 8
+     },
+     {
+      "type": "spotlight",
+      "rect": [
+       200,
+       1040,
+       1220,
+       250
+      ],
+      "t": 4499.3,
+      "to_t": 4506.0
+     },
+     {
+      "type": "underline",
+      "rect": [
+       216,
+       1146,
+       890,
+       40
+      ],
+      "t": 4499.6,
+      "dur": 16,
+      "width": 7,
+      "to_t": 4506.0
+     }
+    ],
+    "doodles": [
+     {
+      "type": "label",
+      "t": 4468.2,
+      "to_t": 4481.0,
+      "at": [
+       18,
+       300
+      ],
+      "text": "барабанная\nдробь…",
+      "size": 34,
+      "rotate": -6
+     }
+    ],
+    "confetti": [
+     {
+      "frame_t": 4496.4,
+      "origin": [
+       960,
+       380
+      ],
+      "count": 80,
+      "spread": 3.0,
+      "seed": "cfin"
+     }
+    ],
+    "accents": [
+     {
+      "t": 4484.2,
+      "to_t": 4489.2,
+      "layout": "face_xl",
+      "why": "drum reaction"
+     },
+     {
+      "t": 4489.2,
+      "to_t": 4494.0,
+      "layout": "studio",
+      "why": "drum chat"
+     }
+    ]
+   },
+   "rhythm": {
+    "intro_t": 4258.6,
+    "spins": [
+     4288.8,
+     "prize:1",
+     "prize:2",
+     "prize:3",
+     "prize:4",
+     4466.7
+    ],
+    "after_banner_s": 7.5,
+    "before_spin_s": 6.0,
+    "min_s": 8
+   }
+  }
+ ],
+ "plates": [
+  {
+   "person": "host",
+   "src": "part1",
+   "t": 2.6,
+   "offset_f": 30
+  },
+  {
+   "person": "cohost",
+   "src": "part1",
+   "window": [
+    1740,
+    1800
+   ],
+   "speaker": "<Имя спикера>",
+   "offset_f": 40
+  },
+  {
+   "person": "host",
+   "src": "part2",
+   "window": [
+    200,
+    260
+   ],
+   "speaker": "<Имя спикера>",
+   "offset_f": 40
+  }
+ ],
+ "min_hold_s": 3,
+ "fonts": {
+  "name": "fonts/Manrope-Bold.ttf",
+  "text": "fonts/Manrope-Medium.ttf",
+  "hl": "fonts/Manrope-SemiBold.ttf"
+ },
+ "chat_col_w": 368,
+ "chat_clock_offset_s": 23.0,
+ "chat_gap_to": [
+  "part2",
+  0.0
+ ],
+ "reaction_lead_s": 1.5,
+ "final_vote": {
+  "poll_id": "final_pill_and_rating",
+  "rules": [
+   [
+    "contains",
+    "СИН",
+    "С"
+   ],
+   [
+    "regex",
+    "\\s*[СC]\\b.*",
+    "С"
+   ],
+   [
+    "else",
+    "К"
+   ]
+  ]
+ },
+ "poll_kicker": "ОПРОС В ЧАТЕ",
+ "polls": [
+  {
+   "id": "pill_start_K_or_S",
+   "keymap": {
+    "К": "К",
+    "K": "К",
+    "С": "С",
+    "C": "С"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "К",
+     "<подпись варианта>"
+    ],
+    [
+     "С",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    0,
+    30,
+    "букв|чат"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "level_1_2_3",
+   "keymap": {
+    "1": "1",
+    "2": "2",
+    "3": "3"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "1",
+     "<подпись варианта>"
+    ],
+    [
+     "2",
+     "<подпись варианта>"
+    ],
+    [
+     "3",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    40,
+    50,
+    "цифр"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "photo_pair1_pancake",
+   "key_rules": [
+    [
+     "startswith",
+     "1",
+     "1"
+    ],
+    [
+     "startswith",
+     "2",
+     "2"
+    ],
+    [
+     "else",
+     "ИИ"
+    ]
+   ],
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "1",
+     "<подпись варианта>"
+    ],
+    [
+     "2",
+     "<подпись варианта>"
+    ],
+    [
+     "ИИ",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    436,
+    450,
+    "циферк|какой|напишите"
+   ],
+   "reveal": "1"
+  },
+  {
+   "id": "photo_pair2_musician",
+   "key_rules": [
+    [
+     "startswith",
+     "1",
+     "1"
+    ],
+    [
+     "startswith",
+     "2",
+     "2"
+    ],
+    [
+     "else",
+     "ИИ"
+    ]
+   ],
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "1",
+     "<подпись варианта>"
+    ],
+    [
+     "2",
+     "<подпись варианта>"
+    ],
+    [
+     "ИИ",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    505,
+    530,
+    "циферк|напишите"
+   ],
+   "reveal": "2"
+  },
+  {
+   "id": "plus_ai_for_home_family",
+   "keymap": {
+    "+": "+"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "+",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    1000,
+    1032,
+    "плюс"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "plus_know_product",
+   "keymap": {
+    "+": "+"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "+",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    1880,
+    1990,
+    "плюс"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "plus_know_guest",
+   "keymap": {
+    "+": "+"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "+",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part1",
+    1990,
+    2100,
+    "плюс"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "year_term_ai_1956",
+   "key_rules": [
+    [
+     "contains",
+     "1956",
+     "56"
+    ],
+    [
+     "equals",
+     "56",
+     "56"
+    ],
+    [
+     "contains",
+     "86",
+     "86"
+    ],
+    [
+     "else",
+     "12"
+    ]
+   ],
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "56",
+     "<подпись варианта>"
+    ],
+    [
+     "86",
+     "<подпись варианта>"
+    ],
+    [
+     "12",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part2",
+    420,
+    470,
+    "год"
+   ],
+   "reveal": "56"
+  },
+  {
+   "id": "plus_daily_ai",
+   "keymap": {
+    "+": "+"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "+",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part2",
+    1150,
+    1240,
+    "плюс"
+   ],
+   "reveal": null
+  },
+  {
+   "id": "plus_guessed_all_six",
+   "keymap": {
+    "+": "+"
+   }
+  },
+  {
+   "id": "final_pill_and_rating",
+   "keymap": {
+    "К": "К",
+    "K": "К",
+    "С": "С"
+   },
+   "title": "<вопрос ведущего>",
+   "options": [
+    [
+     "К",
+     "<подпись варианта>"
+    ],
+    [
+     "С",
+     "<подпись варианта>"
+    ]
+   ],
+   "prompt": [
+    "part2",
+    4550,
+    4580,
+    "таблетк"
+   ],
+   "reveal": null
+  }
+ ],
+ "quiz": {
+  "stats_poll_id": "truth_or_ai_videos_A_F",
+  "id": "truth_or_ai",
+  "src": "part1",
+  "start_t": 276.0,
+  "letters": "ABCDEF",
+  "token_regex": "ИИ|ПРАВДА|ПРВДА|П|Л|A|B",
+  "tokens": {
+   "ИИ": [
+    "ИИ",
+    "Л",
+    "B"
+   ],
+   "П": [
+    "ПРАВДА",
+    "ПРВДА",
+    "П",
+    "A"
+   ]
+  },
+  "vote_for": "ИИ",
+  "kicker": "ОПРОС В ЧАТЕ · ГОЛОСА «ИИ»",
+  "title": "<вопрос викторины>",
+  "option_labels": [
+   "ролик A",
+   "ролик B",
+   "ролик C",
+   "ролик D",
+   "ролик E",
+   "ролик F"
+  ]
+ },
+ "rating_stat": {
+  "poll_id": "final_pill_and_rating",
+  "value": 10,
+  "prefix": "оценка эфира: ",
+  "suffix": " из 10",
+  "at": [
+   262,
+   790
+  ],
+  "size": 44
+ },
+ "pill_keyterms": [
+  "<основа ключевого слова, строчными>"
+ ],
+ "drop_words": [
+  "<фамилия частного лица>"
+ ],
+ "tags": [
+  {
+   "from": "b0+10",
+   "dur_s": 9,
+   "text": "ЗАПИСЬ ЭФИРА НАЧАЛАСЬ ПОЗЖЕ — ЗВУК С ДИКТОФОНА"
+  },
+  {
+   "from": "fa+10",
+   "to": "t_end-6",
+   "text": "ЛУЧШЕЕ ИЗ ЭФИРА"
+  },
+  {
+   "after_video": "s00_cold_open.mp4",
+   "offset_f": 20,
+   "dur_s": 5,
+   "text": "ЗВУК С ДИКТОФОНА"
+  }
+ ],
+ "teaser": {
+  "pieces": [
+   [
+    "part2",
+    693.0,
+    699.3
+   ],
+   [
+    "part2",
+    766.3,
+    770.25
+   ],
+   [
+    "part1",
+    485.2,
+    489.35
+   ]
+  ],
+  "start_frame": 200,
+  "tail": 22,
+  "chapter_title": "Лучшее из эфира",
+  "layouts_from": 200,
+  "intro_layouts": [
+   {
+    "frame": 0,
+    "layout": "intro_hidden"
+   },
+   {
+    "frame": 194,
+    "layout": "studio",
+    "morph": 18
+   }
+  ],
+  "layouts": [
+   [
+    0,
+    "fb",
+    "studio"
+   ],
+   [
+    "fb",
+    "fc",
+    "board"
+   ],
+   [
+    "fc",
+    "t_end",
+    "face_xl"
+   ]
+  ],
+  "feeds": [
+   {
+    "id": "ta29",
+    "from": 190,
+    "to": "fb",
+    "kind": "sketch",
+    "slide": 29,
+    "settle": 1000000,
+    "beats": {
+     "start": 188,
+     "step": 12,
+     "first_dur": 14,
+     "dur": 26,
+     "pen_index": 2
+    }
+   },
+   {
+    "id": "tb29",
+    "from": "fb",
+    "to": "fc+24",
+    "kind": "slide",
+    "slide": 29,
+    "drift": 0.03,
+    "underline": {
+     "t": [
+      "part2",
+      767.6
+     ],
+     "dur": 14
+    }
+   },
+   {
+    "id": "tc08",
+    "from": "fc+16",
+    "to": "t_end+14",
+    "kind": "slide",
+    "slide": 8,
+    "drift": -0.03,
+    "xfade": 8
+   }
+  ],
+  "doodles": [
+   {
+    "type": "label",
+    "from": "fb+6",
+    "to": "fc",
+    "at": [
+     26,
+     500
+    ],
+    "text": "<надпись>",
+    "size": 48,
+    "rotate": -4
+   },
+   {
+    "type": "arrow",
+    "from": "fb+14",
+    "to": "fc",
+    "at": [
+     120,
+     640
+    ],
+    "to_content": [
+     640,
+     810
+    ],
+    "bend": 30
+   },
+   {
+    "type": "stars",
+    "from": "fc+30",
+    "to": "t_end",
+    "at": [
+     1230,
+     70
+    ],
+    "size": 1.0
+   }
+  ]
+ },
+ "intro": {
+  "titleFrom": 60,
+  "titleTo": 206,
+  "art_slide": 3,
+  "art_parts": [
+   {
+    "box": [
+     1320,
+     130,
+     540,
+     380
+    ],
+    "start": 66,
+    "speed": 0.9
+   },
+   {
+    "box": [
+     1320,
+     500,
+     540,
+     380
+    ],
+    "start": 96,
+    "speed": 0.9
+   }
+  ]
+ },
+ "spoken_flags": [
+  {
+   "regex": "<regex слов-сигналов из правил владельца>",
+   "note": "<правило>"
+  }
+ ],
+ "gain_db": {
+  "intro": 0.0,
+  "part1": 5.4,
+  "part2": 4.7
+ },
+ "music": {
+  "src": "audio/music/<bed>.wav",
+  "teaser": {
+   "from_s": 7.8,
+   "note": "intro teaser (sc1 mix)"
+  },
+  "cards": {
+   "from_s": 8.0,
+   "step_s": 15.8,
+   "cycle": 4,
+   "pre_s": 1.2,
+   "post_s": 0.8
+  },
+  "outro": {
+   "pre_s": 0.5,
+   "from_s": 31.0,
+   "note": "outro"
+  }
+ },
+ "owner_review": {
+  "optional_cuts": [
+   {
+    "what": "<что владелец решает вырезать или оставить>",
+    "src": "part2",
+    "t0": 0.0,
+    "t1": 0.0
+   }
+  ],
+  "unconfirmed": [
+   "<что ждёт подтверждения владельца>"
+  ]
+ },
+ "validate": {
+  "chapters": [
+   10,
+   18
+  ],
+  "tabbar_windows": [
+   {
+    "clip": "full/clips/p2_main.mp4",
+    "from_s": 4250,
+    "to_s": 4540,
+    "min_y": 119
+   }
+  ]
+ },
+ "tests": {
+  "test_intro": [
+   0,
+   700
+  ],
+  "test_poll": [
+   8900,
+   9650
+  ],
+  "test_outro": [
+   184350,
+   "end"
+  ]
+ }
+}

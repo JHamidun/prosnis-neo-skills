@@ -1,0 +1,48 @@
+{
+ "next": {
+  "eyebrow": "<eyebrow>",
+  "title": "<title>",
+  "title_accent": "<title_accent>",
+  "intensive": {
+   "eyebrow": "<eyebrow>",
+   "title": "<title>",
+   "text": "<text>",
+   "bullets": [
+    "<bullets>"
+   ],
+   "cta": "<cta>",
+   "contact_url": "<contact_url>",
+   "contact_label": "<contact_label>",
+   "qr": "qr-0-navy.png",
+   "$qr": "QR next to the contact link: a file in assets/brand/ written by prepare_assets.py for a job.json outro.links[] entry with \"qr\": true - qr-<index in outro.links>-navy.png or that entry's qr_file; \"\" hides the QR tile. Default qr-0-navy.png (outro.links[0]).",
+   "promo": "<promo>",
+   "promo_note": "<promo_note>"
+  },
+  "saturday": {
+   "eyebrow": "<eyebrow>",
+   "title": "<title>",
+   "text": "<text>",
+   "when": "<when>"
+  },
+  "bot": {
+   "eyebrow": "<eyebrow>",
+   "title": "<title>",
+   "text": "<text>",
+   "url": "<url>",
+   "label": "<label>",
+   "qr": "qr-1-navy.png",
+   "$qr": "QR of the bot link, same rules as next.intensive.qr. Default qr-1-navy.png (outro.links[1])."
+  }
+ },
+ "links": [
+  {
+   "label": "<label>",
+   "url": "<url>"
+  }
+ ],
+ "allowed_url_hosts": [
+  "t.me/<bot>",
+  "t.me/<host>"
+ ],
+ "$note": "Shared by summary and transcript (the CTA page, links). {EVENT_PAGE_LINK} / {PDF_LINK} stay placeholders until the links exist: render_pdf.py --final refuses to render while any {UPPER_CASE} placeholder is left."
+}

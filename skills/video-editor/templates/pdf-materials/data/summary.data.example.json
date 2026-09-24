@@ -1,0 +1,113 @@
+{
+ "contract": "<contract>",
+ "doc": {
+  "kind": "<kind>",
+  "eyebrow": "<eyebrow>",
+  "title": "<title>",
+  "title_accent": "<title_accent>",
+  "subtitle": "<subtitle>",
+  "lead": "<lead>",
+  "host": "<host>",
+  "host_role": "<host_role>",
+  "co": [
+   "<co>"
+  ],
+  "date": "<date>"
+ },
+ "stats": [
+  {
+   "value": "<value>",
+   "label": "<label>"
+  }
+ ],
+ "cover_chips": [
+  "<cover_chips>"
+ ],
+ "about": {
+  "title": "<title>",
+  "paragraphs": [
+   "<paragraphs>"
+  ]
+ },
+ "chapters": "@transcript",
+ "ideas": [
+  {
+   "title": "<title>",
+   "text": "<text>",
+   "art": "<art>"
+  }
+ ],
+ "cases": [
+  {
+   "title": "<title>",
+   "chapter": 4,
+   "text": "<text>",
+   "facts": [
+    "<facts>"
+   ]
+  }
+ ],
+ "world": {
+  "title": "<title>",
+  "items": [
+   {
+    "value": "<value>",
+    "text": "<text>"
+   }
+  ],
+  "footnote": "<footnote>"
+ },
+ "chat": {
+  "title": "<title>",
+  "lead": "<lead>",
+  "stats": [
+   {
+    "value": "<value>",
+    "label": "<label>"
+   }
+  ],
+  "polls": [
+   {
+    "title": "<title>",
+    "note": "<note>",
+    "bars": [
+     {
+      "label": "<label>",
+      "value": 12
+     }
+    ]
+   }
+  ],
+  "questions": [
+   {
+    "who": "<who>",
+    "q": "<q>",
+    "a": "<a>"
+   }
+  ],
+  "thanks": "<thanks>"
+ },
+ "raffle": {
+  "title": "<title>",
+  "lead": "<lead>",
+  "grand": {
+   "badge": "<badge>",
+   "handle": "<handle>",
+   "note": "<note>",
+   "prize": "<prize>"
+  },
+  "winners": [
+   {
+    "n": 1,
+    "ticket": 70,
+    "handle": "<handle>",
+    "prize": "<prize>"
+   }
+  ],
+  "key": "<key>",
+  "fingerprint": "<fingerprint>",
+  "tickets": "<tickets>",
+  "note": "<note>"
+ },
+ "$note": "Content of summary.html (schema: DATA_CONTRACT.md). chapters = \"@transcript\" pulls chapter titles + timecodes from data/transcript.data.json at render time."
+}

@@ -1,0 +1,47 @@
+{
+ "kind": "<kind>",
+ "eyebrow": "<eyebrow>",
+ "title": "<title>",
+ "title_accent": "<title_accent>",
+ "subtitle": "<subtitle>",
+ "date": "<date>",
+ "host": "<host>",
+ "host_role": "<host_role>",
+ "about": "<about>",
+ "editorial_note": "<editorial_note>",
+ "recording_url": "<recording_url>",
+ "deck_url": "<deck_url>",
+ "bot_url": "<bot_url>",
+ "contact_url": "<contact_url>",
+ "speakers": {
+  "host": {
+   "name": "<Имя Фамилия ведущего как в ASR>",
+   "short": "<Имя>",
+   "role": "ведущий",
+   "tone": "coral"
+  },
+  "cohost": {
+   "name": "<Имя Фамилия со-ведущего>",
+   "short": "<Имя>",
+   "role": "<роль>",
+   "tone": "lavender"
+  },
+  "video": {
+   "name": "Видео",
+   "short": "Видео",
+   "role": "фрагмент ролика из презентации",
+   "tone": "muted"
+  },
+  "guest": {
+   "name": "Участник",
+   "short": "Участник",
+   "role": "",
+   "tone": "muted"
+  }
+ },
+ "co": [
+  "<При участии … — …>"
+ ],
+ "cover_art": "<art name for the cover>",
+ "cover_note": "всё, что прозвучало в эфире"
+}

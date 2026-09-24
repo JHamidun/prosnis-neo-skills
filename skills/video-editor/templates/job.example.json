@@ -1,0 +1,96 @@
+{
+ "$note": "One file per webinar = one job. Every script of scripts/webinar/ takes --job <this file> (or $WEBINAR_JOB). Paths: absolute, or relative to the job root. Values in <...> are placeholders; numbers show the scale of the reference webinar (2 Zoom parts + a recorder, 2 h 03 min programme). Reference: references/webinar-montage.md.",
+ "job": "<yyyy-mm-dd>-<slug>",
+ "root": "~/VideoJobs/<yyyy-mm-dd>-<slug>",
+ "title": "<Название эфира>, <дд.мм.гггг>",
+ "author": "<Имя Фамилия · бренд>",
+ "fps": 25,
+ "canvas": [1920, 1080],
+ "env_file": null,
+ "npm_cache": null,
+
+ "sources": [
+  {"id": "recorder", "kind": "recorder", "path": "<диктофон>.ogg", "t0_wall": "<yyyy-mm-ddThh:mm:ss.sss±hh:mm>", "duration": null},
+  {"id": "part1", "kind": "zoom", "tag": "P1", "path": "<запись 1>.mp4", "note": "<чья запись>"},
+  {"id": "part2", "kind": "zoom", "tag": "P2", "path": "<запись 2>.mp4", "note": "<чья запись>"}
+ ],
+ "align": {
+  "reference": "recorder",
+  "parts": ["part1", "part2"],
+  "t0_wall": "<yyyy-mm-ddThh:mm:ss.sss±hh:mm>",
+  "chat_clock_offset_s": null,
+  "chat_clock_err_s": null
+ },
+
+ "speakers": {"host": {"name": "<Имя Фамилия ведущего как в ASR>", "role": "ведущий"},
+              "cohost": {"name": "<Имя Фамилия со-ведущего>", "role": "<роль>"}},
+ "transcript": {
+  "language": "ru",
+  "keyterms": ["<термины эфира для Deepgram keyterm: продукты, имена, бренды>"],
+  "public_surnames": ["<фамилии публичных людей, которые МОЖНО оставлять>"],
+  "content_rules": [["^курс(а|е|у|ом)?$", "<правило владельца: что проверить в этом слове>"]],
+  "watch_words": [],
+  "drop_words": ["<фамилия частного лица, которая не должна попасть в субтитры>"],
+  "words_files": {}
+ },
+ "vision": {
+  "model": "gemini-3.8-flash",
+  "event": "<что за эфир, для промптов Gemini>",
+  "host_label": "<как называть ведущего в промптах>",
+  "people": {},
+  "speaker_enum": []
+ },
+ "zoom": {"strip": {"P1": {"x0": 3440, "slot_h": 223.5, "slots": 6}, "P2": {"x0": 3504, "slot_h": 187.8, "slots": 8}}},
+ "chat": {
+  "saved_chat": "<папка Zoom>/meeting_saved_chat.txt",
+  "client_log": "<папка Zoom>/chat.txt",
+  "clock_offset_s": null,
+  "team_names": ["<Имя Фамилия ведущего>", "<Имя Фамилия со-ведущего>"],
+  "label_model": "gemini-3.8-flash",
+  "rules": ["<правила владельца для разметки чата>"]
+ },
+ "deck": {
+  "pdf": "<слайды, которые показывали>.pdf",
+  "pptx": "<дека>.pptx",
+  "merged": "<deck.merged.json от manus-slides exec-sketch> | null",
+  "art_dir": "<папка чистых артов>",
+  "art_map": null,
+  "assets_map": "<assemble/assets_map.json> | null",
+  "video_slides": [],
+  "videos": [
+   {"key": "12", "mode": "audio", "src": "part1", "window": [760, 180], "video": "<ролик деки>.mp4", "probe": [5, 40]},
+   {"key": "54", "mode": "motion", "src": "part2", "window": [2825, 80], "crop": [0.44, 0.34, 0.5, 0.5], "video": "<ролик деки без звука>.mp4"}
+  ]
+ },
+ "slides": {"model": "gemini-3.8-flash", "workers": 10, "min_window_s": 3.0,
+            "extra_windows": [[1, "intro", 338.5, 433.3]]},
+
+ "ingest": {
+  "src_size": [3840, 2160],
+  "workers": 4,
+  "clips": {
+   "p1_main": {"src": "part1", "crop_4k": [0, 0, 3440, 2160], "size": "2560x1608", "cq": 18},
+   "p1_cam": {"src": "part1", "crop_4k": [3474, 0, 356, 200], "size": "640x360", "sharpen": true, "cq": 17},
+   "p1_cam2": {"src": "part1", "crop_tblr": [224, 1736, 3474, 10], "size": "640x360", "sharpen": true, "cq": 17, "ss": 1700.0, "dur": null}
+  }
+ },
+ "remotion": {"dir": "remotion", "public_dir": null},
+ "render": {"workers": 3, "concurrency": 7, "chunk_frames": 7500, "gl": "angle",
+            "encode": {"b": "7M", "maxrate": "11M", "bufsize": "14M", "preset": "p7", "gop": 50}},
+ "audio": {"target_lufs": -16, "true_peak": -1.5, "lra": 11, "music_bed": "audio/music/<bed>.wav"},
+ "final": {"name": "<Имя_файла_ролика>.mp4", "audio_language": "rus"},
+
+ "brand": {"name": "<бренд>", "header": "<БРЕНД В КОЛОНТИТУЛЕ PDF>", "dir": "brand/", "logo_svg": "<логотип для тёмного фона>.svg",
+           "mark_svg": "<знак>.svg", "accent": "#F26941"},
+ "outro": {"links": [{"label": "<написать ведущему>", "url": "https://t.me/<host>", "qr": true},
+                     {"label": "<бот>", "url": "https://t.me/<bot>", "qr": true}]},
+ "materials": {
+  "pdf_names": {"transcript": "Транскрипт_<slug>", "summary": "Саммари_<slug>"},
+  "keywords": ["<ключевые слова PDF>"],
+  "rutube": {"title": "<заголовок ≤ 100 знаков>", "tags": ["<тег>"], "category": "Обучение"},
+  "allowed_links": ["https://t.me/<bot>"],
+  "rules": []
+ },
+ "qa": {"model": "gemini-3.8-flash", "reference": "<эталонный ролик владельца>.mp4", "frames_context": null},
+ "privacy": {"blur": [], "never_subtitle": [], "owner_review": []}
+}

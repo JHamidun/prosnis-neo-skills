@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Webinar cover — speaker photo</title>
+<!-- Derived from the owner's canonical v7 webinar cover template:
+     same 1200x675 frame, Manrope, H-mark, pill, title block, speaker/date/QR bottom row, brand wordmark.
+     Change vs canon: the right-hand illustration is replaced by a real frame of the speaker from the recording
+     (cut out, rim-lit) over a digital-rain backdrop + the red/blue pills from the deck (a motif of the reference webinar).
+     Double-underscore placeholders are filled by render_cover.py from cover.json; CSS vars --subtitle/--date/... too. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+  :root {
+    --navy: #010334;
+    --ink: #000417;
+    --blue: #2D2FE8;
+    --cyan: #29A9FF;
+    --white: #FFFFFF;
+    --grey: #9CA3AF;
+    --pill-bg: rgba(15,20,45,0.72);
+    --pill-border: rgba(255,255,255,0.08);
+    /* theme hooks (canon = cyan/blue; the Vibe Academy variant overrides them) */
+    --accent: var(--cyan);
+    --accent2: var(--blue);
+    --glow: rgba(41,169,255,0.50);
+    --glow-soft: rgba(41,169,255,0.30);
+    --plasma: rgba(45,47,232,0.42);
+    --rain-rgb: 41,169,255;
+
+    --category: "__CATEGORY__";
+    --subtitle: "__SUBTITLE__";
+    --date: "__DATE__";
+    --duration: "__DURATION__";
+    --audience: "";
+    --speaker-role: "__SPEAKER_ROLE__";
+    --rutube-url: "__RUTUBE_URL__";
+    --tg-url: "__TG_URL__";
+  }
+  html, body { margin: 0; padding: 0; background: #05060d; color: #fff;
+    font-family: "Manrope", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .cover { position: relative; width: 1200px; height: 675px; overflow: hidden;
+    background: var(--ink); color: var(--white); isolation: isolate; font-family: "Manrope", sans-serif; }
+
+  .bg { position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(100% 100% at 50% 110%, #0a0a2a 0%, #000417 55%, #000000 100%); }
+
+  /* ---------- right-hand stage: rain + glow + speaker + pills ---------- */
+  .rain { position: absolute; left: 520px; top: 0; width: 680px; height: 675px; z-index: 1;
+    opacity: .9;
+    -webkit-mask-image: radial-gradient(62% 70% at 58% 38%, #000 0%, rgba(0,0,0,.55) 55%, transparent 100%);
+            mask-image: radial-gradient(62% 70% at 58% 38%, #000 0%, rgba(0,0,0,.55) 55%, transparent 100%); }
+  .plasma { position: absolute; left: 560px; top: 20px; width: 640px; height: 640px; z-index: 1;
+    border-radius: 50%; filter: blur(110px); pointer-events: none;
+    background: radial-gradient(circle, var(--plasma) 0%, transparent 62%); }
+  .halo { position: absolute; left: 730px; top: 60px; width: 380px; height: 380px; z-index: 2;
+    border-radius: 50%; filter: blur(46px); pointer-events: none;
+    background: radial-gradient(circle, var(--glow-soft) 0%, transparent 66%); opacity: .8; }
+
+  .speaker-wrap { position: absolute; z-index: 3; left: 566px; top: 104px; height: 576px; aspect-ratio: 1293 / 1300; }
+  .speaker { display: block; width: 100%; height: 100%; filter: drop-shadow(8px -6px 34px var(--glow-soft)); }
+  /* soft key light from the upper left (studio modelling on a flat webcam frame) */
+  .keylight { position: absolute; inset: 0; mix-blend-mode: soft-light; opacity: .55;
+    background: radial-gradient(40% 32% at 44% 30%, rgba(255,246,236,.9), rgba(255,246,236,0) 72%);
+    -webkit-mask: var(--sp-mask) center / 100% 100% no-repeat; mask: var(--sp-mask) center / 100% 100% no-repeat; }
+  /* accent rim light on the right/top edge, coming from the plasma glow behind */
+  .rimlight { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .7; background: var(--accent);
+    -webkit-mask: var(--rim-mask) center / 100% 100% no-repeat; mask: var(--rim-mask) center / 100% 100% no-repeat; }
+
+  /* glossy 3D capsules (SVG) — the red/blue pill motif of the deck, in the premium v7 finish */
+  .capsule { position: absolute; z-index: 4; width: 78px; height: 32px; overflow: visible; }
+  .cap-red  { left: 688px;  top: 132px; transform: rotate(-58deg);
+    filter: drop-shadow(0 0 14px rgba(255,64,48,.55)) drop-shadow(0 8px 12px rgba(0,0,0,.6)); }
+  .cap-blue { left: 1040px; top: 214px; transform: rotate(52deg);
+    filter: drop-shadow(0 0 14px rgba(64,120,255,.6)) drop-shadow(0 8px 12px rgba(0,0,0,.6)); }
+
+  /* sink the torso/mic into the dark bottom row (QRs, date) */
+  .floor { position: absolute; left: 0; right: 0; bottom: 0; height: 290px; z-index: 5; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,4,23,0) 0%, rgba(0,4,23,.5) 42%, rgba(0,4,23,.86) 78%, rgba(0,4,23,.96) 100%); }
+  /* canon left readability scrim */
+  .scrim { position: absolute; inset: 0; z-index: 5; pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,4,23,0.97) 0%, rgba(0,4,23,0.9) 34%,
+      rgba(0,4,23,0.45) 48%, rgba(0,4,23,0) 60%); }
+
+  .wordmark { position: absolute; left: -8px; bottom: -42px; z-index: 6; font-weight: 800; font-size: 180px;
+    line-height: 1; letter-spacing: -0.06em; color: rgba(255,255,255,0.07); white-space: nowrap;
+    pointer-events: none; font-feature-settings: "ss01" on; }
+
+  .content { position: absolute; inset: 0; z-index: 7; padding: 36px 48px 32px; display: grid;
+    grid-template-rows: auto 1fr auto; }
+
+  .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; background: var(--pill-bg);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: var(--white);
+    padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; border: 1px solid var(--pill-border); white-space: nowrap; }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .pill::before { content: var(--category); }
+  .hmark { position: relative; width: 88px; height: 92px; background: url("assets/h_logo.png") center/contain no-repeat;
+    filter: drop-shadow(0 10px 24px rgba(45,47,232,0.45)); flex-shrink: 0; }
+
+  .middle { align-self: center; max-width: 600px; margin-top: -6px; }
+  .title { font-size: 58px; line-height: 1.04; font-weight: 800; letter-spacing: -0.03em; margin: 0; color: #fff;
+    text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+  .title .hl { color: var(--accent); text-shadow: 0 0 26px var(--glow); }
+  .accent-line { width: 200px; height: 5px; background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 3px; margin: 22px 0 16px; box-shadow: 0 0 20px var(--glow); }
+  .subtitle { font-size: 23px; line-height: 1.34; font-weight: 500; color: #dbe3ee; max-width: 560px; margin: 0 0 14px; }
+  .subtitle::before { content: var(--subtitle); }
+  .meta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+  .tag { font-size: 15px; color: var(--accent); font-weight: 600; letter-spacing: 0.01em; }
+
+  .bottom { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 28px; max-width: 1104px; }
+  .speaker-block { display: flex; align-items: center; gap: 14px; padding-bottom: 4px; }
+  .speaker-bar { width: 3px; height: 50px; border-radius: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2));
+    box-shadow: 0 0 12px var(--glow-soft); }
+  .speaker-text { display: flex; flex-direction: column; gap: 2px; }
+  .speaker-label { font-size: 10px; letter-spacing: 0.22em; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+  .speaker-name { font-size: 17px; font-weight: 700; color: #fff; }
+  .speaker-role { font-size: 11px; color: var(--grey); letter-spacing: 0.04em; font-weight: 500; }
+  .speaker-role::before { content: var(--speaker-role); }
+  .date-meta { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; padding: 0 0 6px 8px; }
+  .date { font-size: 24px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .date::before { content: var(--date); }
+  .duration { font-size: 11px; color: var(--grey); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
+  .duration::before { content: var(--duration); }
+  .audience { font-size: 10px; color: rgba(156,163,175,0.75); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; }
+  .audience::before { content: var(--audience); }
+  .qr-stack { display: flex; align-items: flex-end; gap: 16px; }
+  .qr-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .qr { width: 70px; height: 70px; padding: 5px; background: #fff; border-radius: 9px; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+  .qr canvas { display: block; width: 100%; height: 100%; }
+  .qr-label { font-size: 9px; letter-spacing: 0.18em; color: var(--white); font-weight: 700; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .qr-label .play { color: var(--accent); font-size: 11px; line-height: 1; }
+  .qr-label .tg-icon path:first-child { fill: var(--accent); stroke: var(--accent); }
+
+  /* RuTube: the platform draws a duration badge in the bottom-right corner and a RuTube QR is pointless
+     on RuTube itself -> keep only the Telegram QR and move it out of the badge zone */
+  .platform-rutube .qr-item.rt { display: none; }
+  .platform-rutube .qr-stack { margin-right: 150px; }
+
+  /* ---------- Vibe Academy variant (accent #F26941) ---------- */
+  .theme-vibe {
+    --accent: #F26941; --accent2: #C8432A; --glow: rgba(242,105,65,0.55); --glow-soft: rgba(242,105,65,0.30);
+    --plasma: rgba(242,105,65,0.26); --rain-rgb: 242,105,65;
+  }
+</style>
+</head>
+<body>
+<div class="cover" id="cover">
+  <div class="bg"></div>
+  <canvas class="rain" id="rain" width="1360" height="1350"></canvas>
+  <div class="plasma"></div>
+  <div class="halo"></div>
+  <div class="speaker-wrap" style="--sp-mask:url(assets/__SPEAKER__); --rim-mask:url(assets/__RIM__)">
+    <img class="speaker" src="assets/__SPEAKER__" alt="">
+    <div class="keylight"></div>
+    <div class="rimlight"></div>
+  </div>
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FF8A7A"/><stop offset=".38" stop-color="#F0342A"/>
+        <stop offset=".78" stop-color="#A3120C"/><stop offset="1" stop-color="#5E0806"/></linearGradient>
+      <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#9CC3FF"/><stop offset=".38" stop-color="#3868FF"/>
+        <stop offset=".78" stop-color="#1630B8"/><stop offset="1" stop-color="#0A1666"/></linearGradient>
+      <linearGradient id="gSpec" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <linearGradient id="gShadeX" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#000" stop-opacity=".28"/><stop offset=".22" stop-color="#000" stop-opacity="0"/>
+        <stop offset=".78" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient>
+      <symbol id="capsule" viewBox="0 0 156 64">
+        <rect x="2" y="2" width="152" height="60" rx="30" style="fill:var(--cap-fill)"/>
+        <rect x="2" y="2" width="152" height="60" rx="30" fill="url(#gShadeX)"/>
+        <line x1="78" y1="4" x2="78" y2="60" stroke="#000" stroke-opacity=".22" stroke-width="2"/>
+        <line x1="80" y1="6" x2="80" y2="58" stroke="#fff" stroke-opacity=".16" stroke-width="1.2"/>
+        <rect x="20" y="9" width="116" height="15" rx="7.5" fill="url(#gSpec)"/>
+        <rect x="26" y="50" width="104" height="4" rx="2" fill="#fff" fill-opacity=".22"/>
+        <rect x="2.5" y="2.5" width="151" height="59" rx="29.5" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1"/>
+      </symbol>
+    </defs>
+  </svg>
+  <svg class="capsule cap-red" style="--cap-fill:url(#gRed)" viewBox="0 0 156 64"><use href="#capsule"/></svg>
+  <svg class="capsule cap-blue" style="--cap-fill:url(#gBlue)" viewBox="0 0 156 64"><use href="#capsule"/></svg>
+  <div class="floor"></div>
+  <div class="scrim"></div>
+  <div class="wordmark">__WORDMARK__</div>
+
+  <div class="content">
+    <div class="top">
+      <span class="pill"><span class="dot"></span></span>
+      <div class="hmark" aria-label="brand"></div>
+    </div>
+
+    <div class="middle">
+      <h1 class="title">__TITLE_HTML__</h1>
+      <div class="accent-line"></div>
+      <p class="subtitle"></p>
+      <div class="meta-row">__TAGS_HTML__</div>
+    </div>
+
+    <div class="bottom">
+      <div class="speaker-block">
+        <div class="speaker-bar"></div>
+        <div class="speaker-text">
+          <span class="speaker-label">Спикер</span>
+          <span class="speaker-name">__SPEAKER_NAME__</span>
+          <span class="speaker-role"></span>
+        </div>
+      </div>
+      <div class="date-meta">
+        <span class="date"></span>
+        <span class="duration"></span>
+        <span class="audience"></span>
+      </div>
+      <div class="qr-stack">
+        <div class="qr-item">
+          <div class="qr" data-qr-var="--tg-url"></div>
+          <span class="qr-label">
+            <svg class="tg-icon" width="11" height="11" viewBox="0 0 24 24" fill="none">
+              <path d="M21.5 4.5 L2.5 12 L9 14.5 L11.5 21 L14 16 L19 19.5 Z" fill="#29A9FF" stroke="#29A9FF" stroke-width="0.6" stroke-linejoin="round"/>
+              <path d="M9 14.5 L19 7" stroke="#010334" stroke-width="0.8" stroke-linecap="round"/>
+            </svg>
+            __TG_LABEL__
+          </span>
+        </div>
+        <div class="qr-item rt">
+          <div class="qr" data-qr-var="--rutube-url"></div>
+          <span class="qr-label"><span class="play">▶</span>RuTube</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // theme switch: ?theme=vibe
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('theme') === 'vibe') document.getElementById('cover').classList.add('theme-vibe');
+  if (qs.get('platform') === 'rutube') document.getElementById('cover').classList.add('platform-rutube');
+
+  // deterministic digital rain (drawn at 2x for DSF 2)
+  (function rain() {
+    const cv = document.getElementById('rain'), ctx = cv.getContext('2d');
+    const rgb = getComputedStyle(document.getElementById('cover')).getPropertyValue('--rain-rgb').trim();
+    let s = 20260923; const rnd = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
+    const glyphs = '01010110ИИ0101<>{}01';
+    const step = 30, fs = 22;
+    ctx.font = `600 ${fs}px "Consolas", "Courier New", monospace`;
+    ctx.textAlign = 'center';
+    for (let x = step / 2; x < cv.width; x += step) {
+      if (rnd() < 0.18) continue;                        // gaps between columns
+      const streaks = 1 + Math.floor(rnd() * 2);
+      for (let k = 0; k < streaks; k++) {
+        const len = 6 + Math.floor(rnd() * 20);
+        const head = Math.floor(rnd() * (cv.height / fs + len));
+        const depth = 0.35 + rnd() * 0.65;               // far columns dimmer
+        for (let i = 0; i < len; i++) {
+          const y = (head - i) * fs;
+          if (y < 0 || y > cv.height) continue;
+          const a = (i === 0 ? 0.95 : 0.55 * (1 - i / len)) * depth;
+          ctx.fillStyle = i === 0 ? `rgba(225,242,255,${a})` : `rgba(${rgb},${a})`;
+          ctx.fillText(glyphs[Math.floor(rnd() * glyphs.length)], x, y);
+        }
+      }
+    }
+  })();
+
+  (function buildQRs() {
+    if (typeof qrcode !== 'function') { document.body.dataset.qr = 'missing'; return; }
+    const cs = getComputedStyle(document.querySelector('.cover'));
+    const unwrap = s => (s || '').trim().replace(/^["']|["']$/g, '');
+    document.querySelectorAll('.qr[data-qr-var]').forEach(el => {
+      const url = unwrap(cs.getPropertyValue(el.dataset.qrVar));
+      if (!url) return;
+      const qr = qrcode(0, 'M'); qr.addData(url); qr.make();
+      const count = qr.getModuleCount(), cell = Math.max(1, Math.floor(280 / count)), size = cell * count;
+      const c = document.createElement('canvas'); c.width = size; c.height = size;
+      const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, size, size); ctx.fillStyle = '#010334';
+      for (let r = 0; r < count; r++) for (let cc = 0; cc < count; cc++)
+        if (qr.isDark(r, cc)) ctx.fillRect(cc * cell, r * cell, cell, cell);
+      el.appendChild(c); el.dataset.url = url;
+    });
+    document.body.dataset.qr = 'ok';
+  })();
+</script>
+</body>
+</html>

@@ -341,6 +341,27 @@ offline/air-gapped delivery use the exec-sketch route.
 
 CLI reference for all five legacy scripts: `references/legacy-workflow.md`.
 
+## PDF деки с кликабельными видео (раздатка после эфира)
+
+Дека с роликами уходит слушателям PDF-ом: на каждом ролике — большая кнопка play + пилюля «Нажмите, чтобы посмотреть
+видео · m:ss», ссылка на ролик в облаке; остальные страницы не меняются. Эталон 23.09: 15 роликов, 45 ссылок на 13
+страницах, проверка — 0 расхождений.
+
+```bash
+python scripts/pptx_video_rects.py deck.pptx pptx_videos.json            # где ролики: xfrm фигур (ИСТИНА, G-P2) + md5 медиа
+python scripts/upload_videos_yadisk.py plan pptx_videos.json assemble/assets_map.json deck.merged.json plan.json
+python scripts/upload_videos_yadisk.py upload plan.json video_links.json --folder "/<папка>"   # YANDEX_OAUTH_TOKEN из окружения
+python scripts/pdf_video_links.py build slides.pdf video_links.json deck_video.pdf --font Manrope-Bold-700.ttf [--multi multi.json]
+python scripts/pdf_video_links.py verify deck_video.pdf slides.pdf video_links.json --anon yadisk --renders qa/ --pages 7,12
+python scripts/pdf_page_image.py deck_video.pdf deck_final.pdf 75 screenshot.png --crop 0,0.094,1,0.893   # страница = реальный скриншот
+```
+
+Грабли: маленькая пилюля в углу не читается как видео — нужна большая кнопка (G-P1); прямоугольники брать из `xfrm`
+pptx, не из карты ассетов (G-P2); два ролика в одном кадре — две нумерованные кнопки в промежутках сетки постера, не на
+буквах (`multi.json`); PyMuPDF — только статический вес шрифта (инстанс из переменного через `fontTools.varLib.instancer`,
+импортировать подмодуль явно); ссылки проверять АНОНИМНО (публичный API + md5 + скачивание). Номера гоч — навык
+`video-editor`, `references/webinar-gotchas.md`.
+
 ## Post-processing exec-sketch decks — production gotchas (whiteboard_generator / `_common.py`)
 
 A logo is composited AFTER generation (the prompt no longer reserves an empty corner — see the white-box fix below). Hard-won lessons when assembling/maintaining real decks:

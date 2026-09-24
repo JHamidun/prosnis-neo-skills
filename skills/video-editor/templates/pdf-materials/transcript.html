@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>__DOC_TITLE__ — транскрипт эфира</title>
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  @page {
+    @top-left { content: "__DOC_TITLE__ · транскрипт"; font: 500 7pt "JetBrains Mono"; letter-spacing: 0.08em; color: #8B8794; }
+    @top-right { content: "__BRAND_HEADER__"; font: 700 7pt "JetBrains Mono"; letter-spacing: 0.16em; color: #F26941; }
+    @bottom-left { content: "Открытый эфир · 23.09.2026"; font: 500 7pt "JetBrains Mono"; color: #8B8794; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 700 7.5pt "JetBrains Mono"; color: #F26941; }
+  }
+
+  /* contents */
+  .toc { break-after: page; }
+  .toc-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; }
+  .toc-head .h1 { font-size: 26pt; }
+  .toc-ul { width: 70mm; height: 4mm; margin: 1.5mm 0 3.5mm -1mm; }
+  .toc-ul svg { width: 100%; height: 100%; }
+  .toc-row { display: grid; grid-template-columns: 12mm 1fr auto; gap: 3mm; align-items: baseline; padding: 0.95mm 0;
+             border-bottom: 0.25mm dashed rgba(1,3,52,0.14); break-inside: avoid; }
+  .toc-n { font-weight: 800; font-size: 15pt; line-height: 1; color: transparent; -webkit-text-stroke: 0.3mm var(--coral); letter-spacing: -0.02em; }
+  .toc-t { font-weight: 700; font-size: 10.5pt; color: var(--ink); line-height: 1.3; }
+  .toc-l { font-size: 8.3pt; color: var(--ink-muted); line-height: 1.35; margin-top: 0.4mm; }
+  .howto { margin-top: 4mm; break-inside: avoid; display: grid; grid-template-columns: 1.05fr 1fr; gap: 0 6mm; background: var(--paper-2); border: 0.3mm solid var(--paper-edge); border-radius: 4mm; padding: 4.5mm 5.5mm; }
+  .howto > div + div { border-left: 0.3mm dashed rgba(1,3,52,0.14); padding-left: 6mm; }
+  .howto p { margin: 1.5mm 0 0; font-size: 8.4pt; line-height: 1.45; color: var(--ink-body); }
+  .legend { display: flex; flex-direction: column; gap: 1.4mm; margin-top: 2mm; }
+  .legend div { display: flex; gap: 2.5mm; align-items: baseline; font-size: 8.2pt; line-height: 1.35; }
+  .who-chip { font-weight: 800; font-size: 8.3pt; border-radius: 1.4mm; padding: 0.3mm 2mm; color: #fff; }
+  .who-chip.host { background: var(--coral); }
+  .who-chip.cohost { background: #4B4FA8; }
+  .who-chip.video { background: #6E6A78; }
+  .banner { margin-top: 3mm; }
+
+  /* chapter card */
+  .chapter-head { break-inside: avoid; break-after: avoid; margin: 8mm 0 5mm; }
+  .chapter:first-of-type .chapter-head { margin-top: 0; }
+  .ch-card { position: relative; border-radius: 5mm; padding: 7mm 8mm 7mm; overflow: hidden; }
+  .ch-card.dark { background: radial-gradient(90mm 60mm at 92% 110%, rgba(242,105,65,0.22), transparent 70%), linear-gradient(160deg, #171A3C, #070918); color: var(--on-dark); }
+  .ch-card.paper { background: var(--paper-2); border: 0.3mm solid var(--paper-edge); }
+  .ch-card.side { display: grid; grid-template-columns: 1fr 58mm; gap: 6mm; align-items: center; min-height: 50mm; }
+  .ch-num { position: absolute; right: 5mm; top: -5mm; font-weight: 800; font-size: 72pt; letter-spacing: -0.04em; line-height: 1;
+            color: transparent; -webkit-text-stroke: 0.35mm rgba(242,105,65,0.30); }
+  .ch-card.side .ch-num { right: 60mm; top: -7mm; }
+  .ch-text { position: relative; }
+  .ch-title { font-weight: 800; font-size: 18pt; letter-spacing: -0.02em; line-height: 1.15; margin: 2.2mm 0 0; max-width: 118mm; }
+  .ch-card.dark .ch-title { color: #fff; }
+  .ch-card.paper .ch-title { color: var(--ink); }
+  .ch-ul { width: 62mm; height: 3.6mm; margin: 1.6mm 0 0 -1mm; }
+  .ch-ul svg { width: 100%; height: 100%; }
+  .ch-lead { margin: 2.6mm 0 0; font-size: 9.6pt; line-height: 1.45; max-width: 120mm; }
+  .ch-card.dark .ch-lead { color: var(--lavender); }
+  .ch-card.paper .ch-lead { color: var(--ink-muted); }
+  .ch-art { position: relative; display: flex; justify-content: center; }
+  .ch-art img { max-width: 100%; max-height: 40mm; object-fit: contain; }
+  .ch-card.wide .ch-art { margin-top: 5mm; }
+  .ch-card.wide .ch-art img { max-height: 30mm; max-width: 100%; }
+  .ch-card .eyebrow b { font-weight: 700; color: inherit; }
+
+  /* paragraphs */
+  .p { position: relative; padding-left: 21mm; margin: 0 0 3.4mm; }
+  .p .when { position: absolute; left: 0; top: 0.9mm; }
+  .p .who { break-after: avoid; }
+  .p p { orphans: 3; widows: 3; }
+  .p .who { font-weight: 800; font-size: 8.4pt; letter-spacing: 0.01em; margin: 0 0 0.6mm; }
+  .p.s-host .who { color: var(--coral-dim); }
+  .p.s-cohost .who { color: #4B4FA8; }
+  .p.s-cohost .when .tc { color: #4B4FA8; background: rgba(75,79,168,0.10); }
+  .p .who em { font-style: normal; font-weight: 500; color: var(--ink-muted); margin-left: 1.5mm; }
+  .p p { margin: 0; font-size: 10.3pt; line-height: 1.62; color: var(--ink-body); }
+  .p.video .vq { margin-top: 2mm; padding-left: 3.5mm; border-left: 0.7mm solid var(--coral-line); font-style: italic; color: #4A4760; }
+  .p.video .pill { font-size: 6.8pt; }
+  .end-mark { display: flex; align-items: center; gap: 3mm; margin: 8mm 0 0; color: var(--ink-muted); font-family: var(--mono); font-size: 8pt; letter-spacing: 0.1em; text-transform: uppercase; }
+  .end-mark::before, .end-mark::after { content: ""; flex: 1; height: 0.25mm; background: rgba(1,3,52,0.14); }
+</style>
+</head>
+<body>
+<script id="data" type="application/json">/*__DATA__*/</script>
+<div id="root"></div>
+<script src="assets/sketch.js"></script>
+<script>
+(function () {
+  const { esc, underline, cover, ctaPage, link } = window.VA;
+  const D = JSON.parse(document.getElementById('data').textContent);
+  const doc = D.doc, SP = D.speakers || {}, chapters = D.chapters, paras = D.paragraphs;
+  const provisional = D.meta.timecodes !== 'final';
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const artSize = (name) => (D.art_sizes || {})[name] || [1000, 400];
+
+  const hours = Math.floor(D.meta.duration_s / 3600), mins = Math.round((D.meta.duration_s % 3600) / 60);
+  const words = D.meta.words.toLocaleString('ru-RU').replace(/ /g, ' ');
+
+  let html = cover({
+    eyebrow: doc.eyebrow, kind: doc.kind, title: doc.title, title_accent: doc.title_accent, subtitle: doc.subtitle,
+    lead: doc.about, host: doc.host, host_role: doc.host_role, date: doc.date, provisional,
+    co: doc.co || [],
+    chips: [`${hours} ч ${mins} мин`, `${chapters.length} глав`, `${words} слов`, 'таймкод у каждого абзаца'],
+  }, { art: doc.cover_art || 'hand-pills', note: doc.cover_note || 'всё, что прозвучало в эфире' });
+
+  // contents
+  html += `<section class="toc">
+    <div class="toc-head"><div><div class="eyebrow">Содержание</div><h1 class="h1">${chapters.length} глав эфира</h1></div>
+      <div class="mono muted" style="font-size:8pt">запись · ${esc(D.meta.duration_hms)}</div></div>
+    <div class="toc-ul">${underline({ stroke: 5 })}</div>
+    ${chapters.map((c) => `<a class="toc-row" href="#ch-${c.n}">
+        <div class="toc-n">${pad2(c.n)}</div>
+        <div><div class="toc-t">${esc(c.title)}</div><div class="toc-l">${esc(c.lead)}</div></div>
+        <span class="tc">${esc(c.tc)}</span></a>`).join('')}
+    <div class="howto">
+      <div><div class="eyebrow">Как читать</div>
+        <p>${esc(doc.about)}</p>
+        <div class="legend">
+          ${['host', 'cohost', 'video'].filter((k) => SP[k]).map((k) => `<div><span class="who-chip ${k}">${esc(SP[k].short)}</span><span>${esc(SP[k].name === SP[k].short ? SP[k].role : SP[k].name + ' — ' + SP[k].role)}</span></div>`).join('')}
+        </div></div>
+      <div><div class="eyebrow">О тексте</div>
+        <p>${esc(doc.editorial_note)}</p>
+        ${(() => { const ls = [doc.recording_url && 'Запись эфира: ' + link(doc.recording_url, 'смотреть'), doc.deck_url && 'Презентация: ' + link(doc.deck_url, 'PDF')].filter(Boolean); return ls.length ? `<p>${ls.join('<br>')}</p>` : ''; })()}
+        ${provisional ? '<div class="banner"><span class="provisional">Черновик · таймкоды будут сверены с финальной записью</span></div>' : ''}
+      </div>
+    </div>
+  </section>`;
+
+  // chapters + paragraphs
+  let prevSpeaker = null;
+  for (const c of chapters) {
+    const [w, h] = artSize(c.art);
+    const wide = w / h > 2.2;
+    html += `<section class="chapter" id="ch-${c.n}"><div class="chapter-head">
+      <div class="ch-card ${c.theme} ${wide ? 'wide' : 'side'}">
+        <div class="ch-num">${pad2(c.n)}</div>
+        <div class="ch-text">
+          <div class="eyebrow">Глава ${pad2(c.n)} · <b>${esc(c.tc)}</b></div>
+          <h2 class="ch-title">${esc(c.title)}</h2>
+          <div class="ch-ul">${underline({ stroke: 6 })}</div>
+          <p class="ch-lead">${esc(c.lead)}</p>
+        </div>
+        <div class="ch-art"><img src="assets/art/${esc(c.art)}.png" alt=""></div>
+      </div></div>`;
+    prevSpeaker = null;
+    for (const p of paras.filter((x) => x.chapter === c.n)) {
+      const sp = SP[p.speaker] || { short: p.speaker };
+      if (p.kind === 'video') {
+        html += `<div class="p video"><div class="when"><span class="tc">${esc(p.tc)}</span></div><div class="body">
+          <span class="pill ghost">▶ Видео · ${esc(p.label)}</span>${p.text ? `<p class="vq">${esc(p.text)}</p>` : ''}</div></div>`;
+        prevSpeaker = 'video';
+        continue;
+      }
+      const showWho = p.speaker !== prevSpeaker;
+      html += `<div class="p s-${esc(p.speaker)}"><div class="when"><span class="tc">${esc(p.tc)}</span></div><div class="body">
+        ${showWho ? `<div class="who">${esc(sp.name || sp.short)}</div>` : ''}<p>${esc(p.text)}</p></div></div>`;
+      prevSpeaker = p.speaker;
+    }
+    html += `</section>`;
+  }
+  html += `<div class="end-mark">конец записи · ${esc(D.meta.duration_hms)}</div>`;
+  html += ctaPage(D.shared);
+
+  document.getElementById('root').innerHTML = html;
+  document.title = `${doc.title} — транскрипт эфира ${doc.date}`;
+  const imgs = [...document.images];
+  Promise.all([document.fonts.ready, ...imgs.map((i) => i.complete ? 1 : new Promise((r) => { i.onload = i.onerror = r; }))])
+    .then(() => { window.__RENDER_DONE__ = { images: imgs.length, broken: imgs.filter((i) => !i.naturalWidth).map((i) => i.getAttribute('src')) }; });
+})();
+</script>
+</body>
+</html>

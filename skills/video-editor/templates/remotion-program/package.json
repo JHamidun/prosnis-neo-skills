@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "webinar-program",
+  "version": "1.0.0",
+  "description": "Full-frame Remotion 'Program' composition driven by an EDL (architecture E) - webinar montage template of skill video-editor",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "bundle": "node bundle_lite.mjs out/bundle",
+    "studio": "remotion studio src/index.ts --public-dir public_lite"
+  },
+  "dependencies": {
+    "remotion": "4.0.526",
+    "@remotion/cli": "4.0.526",
+    "@remotion/bundler": "4.0.526",
+    "@remotion/renderer": "4.0.526",
+    "@remotion/media": "4.0.526",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/react": "19.2.7"
+  }
+}

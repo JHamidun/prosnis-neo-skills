@@ -1,0 +1,23 @@
+{
+ "$note": "Chapters = the chapter cards of the final video (edl/chapters.json card_n), so transcript, summary and the RuTube timecodes share one list. anchor.card_n -> the chapter starts at the first word after that card (needs --timemap). art = assets/art/<name>.png; theme must match the art ink (light ink -> dark, dark ink -> paper).",
+ "chapters": [
+  {
+   "title": "<название главы = текст карточки>",
+   "lead": "<подзаголовок одной строкой>",
+   "art": "<art name>",
+   "theme": "dark",
+   "anchor": {
+    "card_n": 1
+   }
+  },
+  {
+   "title": "<…>",
+   "lead": "<…>",
+   "art": "<art name>",
+   "theme": "paper",
+   "anchor": {
+    "phrase": "<3-6 слов из речи, с которых начинается глава>"
+   }
+  }
+ ]
+}

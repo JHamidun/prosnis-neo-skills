@@ -1,0 +1,1179 @@
+{
+ "$schema_note": "Design tokens of a webinar montage (template). Single source of truth: the Remotion project <job>/remotion imports <job>/style/tokens.json (baked into the bundle - re-bundle after edits); the EDL builder and ffmpeg scripts read the same rects. All geometry in px on the 1920x1080 canvas, all times in frames at 25 fps unless the key ends in _ms / _s. Values are those of the reference webinar (23.09.2026) so the scale is visible; brand, people, intro and outro are placeholders.",
+ "version": "1.3.1",
+ "canvas": {
+  "width": 1920,
+  "height": 1080,
+  "fps": 25,
+  "pixel_format": "yuv420p",
+  "color": "bt709 limited (tv); sources are tagged bt470bg -> convert 601->709 exactly once at ingest",
+  "title_safe": [
+   96,
+   54,
+   1728,
+   972
+  ],
+  "action_safe": [
+   48,
+   27,
+   1824,
+   1026
+  ]
+ },
+ "color": {
+  "stage_top": "#12142A",
+  "stage_bottom": "#07080F",
+  "stage_glow": "rgba(242,105,65,0.07)",
+  "stage_glow_2": "rgba(120,126,200,0.06)",
+  "navy": "#010334",
+  "coral": "#F26941",
+  "coral_dim": "#B84E31",
+  "coral_soft": "rgba(242,105,65,0.14)",
+  "coral_line": "rgba(242,105,65,0.55)",
+  "lavender": "#C9CBE0",
+  "muted": "#8E92B8",
+  "paper": "#F8F3EC",
+  "paper_ink": "#010334",
+  "paper_muted": "#706B73",
+  "ink_on_dark": "#F4F1EA",
+  "sketch_yellow": "#FFD014",
+  "frame_edge": "rgba(255,255,255,0.10)",
+  "frame_shadow": "0 18px 48px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.35)",
+  "bubble_bg": "#171A31",
+  "bubble_edge": "rgba(201,203,224,0.10)",
+  "bubble_team_bg": "rgba(242,105,65,0.13)",
+  "bubble_team_edge": "rgba(242,105,65,0.50)",
+  "bubble_text": "#ECEAF5",
+  "name_palette": [
+   "#F4A27E",
+   "#F2C76B",
+   "#8FD6B8",
+   "#8EC5F2",
+   "#B9A6F2",
+   "#F29BB8"
+  ]
+ },
+ "font": {
+  "ui": {
+   "family": "Manrope",
+   "file": "fonts/Manrope-var.ttf",
+   "note": "variable 200-800; use 500/600/700/800"
+  },
+  "hand": {
+   "family": "Caveat",
+   "file": "fonts/Caveat-var.ttf",
+   "note": "full OFL Caveat variable 400-700 (753 glyphs: Latin, Cyrillic, digits). The older fonts/Caveat-Regular.ttf is a 109-glyph subset WITHOUT lowercase Latin and digits — Latin fell back to a serif (caught on the chapter card 24.09). No '→' glyph: arrows come from the fallback font or are drawn."
+  },
+  "mono": {
+   "family": "JetBrains Mono",
+   "files": [
+    "fonts/JetBrainsMono-Medium.ttf",
+    "fonts/JetBrainsMono-Bold.ttf"
+   ],
+   "note": "meta labels, timecodes, links; echoes the byline of the logo"
+  }
+ },
+ "radius": {
+  "frame": 22,
+  "pip": 18,
+  "bubble": 16,
+  "pill": 10,
+  "plate": 14,
+  "button": 18
+ },
+ "layout": {
+  "studio": {
+   "main": [
+    40,
+    40,
+    1440,
+    810
+   ],
+   "cam": [
+    1512,
+    40,
+    368,
+    207
+   ],
+   "chat": [
+    1512,
+    263,
+    368,
+    587
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    826
+   ],
+   "note": "DEFAULT for clean slides / live sketch / P2 shares (tile cropped away): the whole slide is visible, camera sits on top of the chat column at native tile resolution (356x200 -> 368x207), chat below.",
+   "cam_mode": "top of chat column"
+  },
+  "full": {
+   "main": [
+    160,
+    28,
+    1600,
+    900
+   ],
+   "cam": null,
+   "chat": null,
+   "logo": null,
+   "caption_band": {
+    "center_x": 960,
+    "max_width": 1500,
+    "top": 944,
+    "bottom": 1052
+   },
+   "lower_third_anchor": [
+    184,
+    904
+   ],
+   "note": "full-screen clean slide / deck video / P2 demo: nothing covers the content; no PiP (face returns with the next studio)."
+  },
+  "speaker": {
+   "main": [
+    40,
+    40,
+    1440,
+    810
+   ],
+   "cam": null,
+   "chat": [
+    1512,
+    40,
+    368,
+    810
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    826
+   ],
+   "punch_in": {
+    "max_scale": 1.2,
+    "ken_burns_per_10s": 0.02,
+    "alternate_direction": true
+   },
+   "note": "only when Zoom itself shows the full speaker view (P2 end, ~720p)."
+  },
+  "speaker_wide": {
+   "main": [
+    160,
+    28,
+    1600,
+    900
+   ],
+   "cam": null,
+   "chat": null,
+   "caption_band": {
+    "center_x": 960,
+    "max_width": 1500,
+    "top": 944,
+    "bottom": 1052
+   },
+   "note": "Q&A / raffle without chat column",
+   "lower_third_anchor": [
+    184,
+    904
+   ],
+   "logo": null
+  },
+  "audio_only": {
+   "main": [
+    40,
+    40,
+    1440,
+    810
+   ],
+   "cam": null,
+   "chat": [
+    1512,
+    40,
+    368,
+    810
+   ],
+   "badge": [
+    64,
+    64,
+    300,
+    44
+   ],
+   "note": "Plaud-only minutes (no video): clean deck slide in main + portrait badge + 'аудио с диктофона' chip | design 24.09: + caption_band/lower_third_anchor/logo (Program reads them every frame)",
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    826
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ]
+  },
+  "studio_tile": {
+   "main": [
+    40,
+    40,
+    1440,
+    810
+   ],
+   "cam": [
+    1160,
+    40,
+    320,
+    180
+   ],
+   "chat": [
+    1512,
+    40,
+    368,
+    810
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    826
+   ],
+   "note": "ONLY for P1 Zoom-share feeds (floating camera tile burned into the top-right of the share): PiP flush over the burned tile so the face is shown once; chat gets the full column.",
+   "cam_mode": "flush-top-right of main (covers the Zoom-burned tile)"
+  },
+  "full_tile": {
+   "main": [
+    160,
+    28,
+    1600,
+    900
+   ],
+   "cam": [
+    1504,
+    28,
+    256,
+    144
+   ],
+   "chat": null,
+   "logo": null,
+   "caption_band": {
+    "center_x": 960,
+    "max_width": 1500,
+    "top": 944,
+    "bottom": 1052
+   },
+   "lower_third_anchor": [
+    184,
+    904
+   ],
+   "note": "full-screen P1 Zoom-share demo: PiP flush over the burned tile."
+  },
+  "board": {
+   "main": [
+    236,
+    118,
+    1152,
+    648
+   ],
+   "cam": [
+    1512,
+    40,
+    368,
+    207
+   ],
+   "chat": [
+    1512,
+    263,
+    368,
+    587
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    260,
+    742
+   ],
+   "doodle_zones": {
+    "left": [
+     40,
+     118,
+     176,
+     648
+    ],
+    "top": [
+     236,
+     20,
+     1152,
+     84
+    ],
+    "bottom": [
+     236,
+     782,
+     1152,
+     92
+    ],
+    "gap_right": [
+     1400,
+     118,
+     100,
+     648
+    ]
+   },
+   "note": "ANIMATION AROUND THE SLIDE: slide shrinks to 60 % width and the stage margins carry hand-drawn arrows, labels, counters pointing INTO the slide. Only for 6-15 s beats, then back to studio."
+  },
+  "intro_hidden": {
+   "main": [
+    400,
+    265,
+    1120,
+    630
+   ],
+   "cam": null,
+   "chat": null,
+   "logo": null,
+   "hidden": true,
+   "caption_band": {
+    "center_x": 760,
+    "max_width": 1380,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    826
+   ],
+   "note": "intro title card: the window waits invisible and small in the middle, then morphs into the teaser layout."
+  },
+  "face": {
+   "main": [
+    40,
+    112,
+    1232,
+    693
+   ],
+   "cam": [
+    1304,
+    40,
+    576,
+    324
+   ],
+   "chat": [
+    1304,
+    388,
+    576,
+    462
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 656,
+    "max_width": 1200,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    781
+   ],
+   "note": "PUNCH-IN ON THE FACE at highlight moments (laugh, strong phrase, personal story): camera grows to 576x324 (1.6x of the native 356x200 tile, lanczos + light unsharp), slide shrinks but stays whole, chat widens under the camera. 4-8 s, then back to studio."
+  },
+  "face_xl": {
+   "main": [
+    1304,
+    40,
+    576,
+    324
+   ],
+   "cam": [
+    40,
+    112,
+    1232,
+    693
+   ],
+   "chat": [
+    1304,
+    388,
+    576,
+    462
+   ],
+   "logo": [
+    1512,
+    996,
+    368,
+    44
+   ],
+   "caption_band": {
+    "center_x": 656,
+    "max_width": 1200,
+    "top": 884,
+    "bottom": 1044
+   },
+   "lower_third_anchor": [
+    64,
+    803
+   ],
+   "lower_third_anchor_note": "design 24.09 17:18: y 781 -> 803 so the name plate fully covers Zoom's burned-in name label at the bottom-left of the camera tile (it peeked out under the plate)",
+   "note": "HERO punch-in on the face (laugh, punchline, raffle reaction): camera and slide swap places in one morph; camera 1232x693 = 3.5x of the native 356x200 tile (soft, acceptable for 3-6 s, lanczos+unsharp at ingest). Use only on the strongest highlights; 'face' (1.6x) for ordinary emphasis."
+  }
+ },
+ "source_crops_4k": {
+  "note": "Measured on 2 probe frames; the vision/timeline agent must confirm per segment (Zoom changes share mode). 4K = 3840x2160.",
+  "share_fullwidth_slide": [
+   0,
+   0,
+   3840,
+   2160
+  ],
+  "share_fullwidth_cam_tile": [
+   3474,
+   0,
+   356,
+   200
+  ],
+  "share_sidestrip_slide_approx": [
+   0,
+   94,
+   3504,
+   1971
+  ],
+  "share_sidestrip_cam_tile": [
+   3506,
+   0,
+   332,
+   187
+  ],
+  "sidestrip_participant_names": "x>=3504, y>=188 — NEVER show (private full names)"
+ },
+ "motion": {
+  "ease_morph": "cubic-bezier(0.65, 0, 0.35, 1)",
+  "ease_morph_ffmpeg": "easeInOutCubic: if(lt(p,0.5),4*pow(p,3),1-pow(2-2*p,3)/2), p=clip((n-F)/D,0,1) — identical curve",
+  "ease_enter": "cubic-bezier(0.16, 1, 0.3, 1)",
+  "ease_exit": "cubic-bezier(0.7, 0, 0.84, 0)",
+  "layout_morph_frames": 15,
+  "layout_morph_min_max": [
+   12,
+   18
+  ],
+  "chat_column_exit_frames": 8,
+  "chat_column_enter_frames": 14,
+  "chat_column_enter_delay": 3,
+  "exit_is_half_of_enter": true,
+  "cut_dissolve_frames": 3,
+  "soft_cut_dissolve_frames": 6,
+  "spring_pop": {
+   "damping": 14,
+   "stiffness": 170,
+   "mass": 0.6
+  },
+  "spring_reflow": {
+   "damping": 26,
+   "stiffness": 210,
+   "mass": 0.8,
+   "overshootClamping": true
+  },
+  "spring_plate": {
+   "damping": 20,
+   "stiffness": 160,
+   "mass": 0.9
+  }
+ },
+ "captions": {
+  "engine": "Remotion Captions2.tsx (architecture E, full-frame). The libass/ASS path of v1.2 is retired.",
+  "font_weight": 700,
+  "size_studio": 44,
+  "size_full": 44,
+  "size_note": "ONE size (44 px) in every layout so text and pill move together through a morph",
+  "line_height": 1.24,
+  "max_lines": 2,
+  "max_chars_per_line": 46,
+  "min_cue_ms": 900,
+  "max_cue_ms": 5600,
+  "split_on_pause_ms": 350,
+  "color": "#F4F1EA",
+  "shadow": "0 2px 10px rgba(0,0,0,0.55)",
+  "fade_in_frames": 3,
+  "fade_out_frames": 2,
+  "rise_px": 6,
+  "highlight": {
+   "mode": "pill-on-spoken-word",
+   "pill_color": "#F26941",
+   "text_on_pill": "#010334",
+   "pad_x": 6,
+   "pad_y": 3,
+   "radius": 10,
+   "grow_frames": 5,
+   "lead_frames": 2,
+   "max_per_cue": 1,
+   "target_share_of_cues": [
+    0.3,
+    0.45
+   ],
+   "text_clip": "navy text is a clip-path copy that follows the growing pill edge exactly (no colour jump)",
+   "never_pick": "adverbs/fillers (буквально, наверное, пожалуйста, сразу, примерно...); prefer terms, numbers, tool names, conclusions"
+  },
+  "karaoke": {
+   "dim_alpha": 0.42,
+   "lit_frames": 3,
+   "note": "upcoming words 42 % brightness, a word lights up over 3 frames from its spoken frame (w.s-1..w.s+2)"
+  },
+  "drop_words": "fillers э/ээ/мм; SURNAMES of private people (e.g. a raffle winner's surname spoken aloud) -> first name only"
+ },
+ "chat": {
+  "header": {
+   "text": "ЧАТ ЭФИРА",
+   "height": 40,
+   "font_px": 16,
+   "tracking": "0.14em",
+   "dot": "#F26941"
+  },
+  "name_px": 17,
+  "text_px": 21,
+  "text_line_height": 1.3,
+  "text_max_lines": 4,
+  "bubble_pad": [
+   12,
+   14
+  ],
+  "gap": 10,
+  "max_visible": 5,
+  "fade_top_px": 100,
+  "min_interval_frames": 12,
+  "hold_highlight_frames": 200,
+  "highlight": {
+   "text_px": 24,
+   "border": "2px solid #F26941",
+   "glow": "0 0 0 6px rgba(242,105,65,0.12)",
+   "scale": 1.0,
+   "badge": "«ВОПРОС ИЗ ЧАТА» only if the text contains «?»"
+  },
+  "aggregate": {
+   "window_s": 20,
+   "min_count": 4,
+   "tokens": [
+    "+",
+    "++",
+    "+++",
+    "К",
+    "С",
+    "к",
+    "с",
+    "1",
+    "2",
+    "да",
+    "Да"
+   ],
+   "chip": "«+» ×N · counter ticks up with spring"
+  },
+  "reply_quote": {
+   "max_chars": 48,
+   "border_left": "3px solid #F26941",
+   "color": "#8E92B8"
+  },
+  "privacy": "first name only; email/nick/unknown -> «Участник»; drop messages with emails, phones, links, @handles, surnames, company names of private people",
+  "question_toast_full": {
+   "rect_bottom_left": [
+    184,
+    904
+   ],
+   "width": 640,
+   "note": "layout full only: the highlighted question being answered, chat-highlight style, spring in, holds while answered (<= 8 s)"
+  },
+  "vote_bubble": {
+   "height": 46,
+   "radius": 14,
+   "layout": "name · «ответ» · answer chip (coral_soft bg, coral 800 20 px)"
+  },
+  "reaction_badge": {
+   "place": "top-right inside the bubble",
+   "h": 28,
+   "icon_px": 22,
+   "bg": "#262A52",
+   "edge": "coral_line",
+   "spring": {
+    "damping": 9,
+    "stiffness": 200,
+    "mass": 0.5
+   }
+  },
+  "pop_delay_frames": 4
+ },
+ "video_chip": {
+  "text": "▶ ВИДЕО",
+  "style": "coral pill like the PDF deck buttons «▶ Смотреть видео»: bg #F26941, text #010334 Manrope 800 20 px, radius 18, pad 8x16",
+  "anchor": "24 px inside the top-left corner of the main window",
+  "hold_s": 2.0,
+  "note": "shown when a deck demo video starts; the clean source file replaces choppy Zoom playback (deck/assemble/assets_map.json rects). Not implemented yet."
+ },
+ "lower_third": {
+  "people": [
+   {
+    "id": "host",
+    "name": "<Имя Фамилия ведущего>",
+    "role": "<должность · компания>",
+    "role2": "<вторая строка или null>"
+   },
+   {
+    "id": "cohost",
+    "name": "<Имя Фамилия со-ведущего>",
+    "role": "<роль>",
+    "role2": null
+   }
+  ],
+  "plate_bg": "#010334",
+  "accent_bar": [
+   6,
+   "#F26941"
+  ],
+  "name_px": 34,
+  "role_px": 20,
+  "pad": [
+   18,
+   26
+  ],
+  "hold_s": 5,
+  "enter_frames": 16,
+  "exit_frames": 8,
+  "role_style": {
+   "font": "ui",
+   "weight": 500,
+   "px": 22,
+   "color": "#C9CBE0",
+   "line_height": 1.35
+  }
+ },
+ "chapter_card": {
+  "duration_frames": 90,
+  "themes_alternate": [
+   "paper",
+   "dark"
+  ],
+  "label": {
+   "font": "mono",
+   "px": 22,
+   "color": "#F26941",
+   "format": "ГЛАВА {n} · {mm:ss}"
+  },
+  "title": {
+   "font": "ui",
+   "weight": 800,
+   "px": 96,
+   "max_lines": 2,
+   "tracking": "-0.02em"
+  },
+  "underline": {
+   "stroke": 9,
+   "color": "#F26941",
+   "draw_frames": 22,
+   "wobble_px": 3
+  },
+  "hand_note": {
+   "font": "hand",
+   "px": 40
+  },
+  "timeline": {
+   "morph_in": [
+    0,
+    12
+   ],
+   "label_in": [
+    8,
+    20
+   ],
+   "title_reveal": [
+    12,
+    40
+   ],
+   "underline_draw": [
+    30,
+    52
+   ],
+   "art_draw": [
+    20,
+    70
+   ],
+   "hold": [
+    70,
+    80
+   ],
+   "morph_out": [
+    80,
+    90
+   ]
+  },
+  "art": {
+   "what": "live sketch of the chapter's key illustration (SketchArt, same engine) in the right half",
+   "box": [
+    1080,
+    190,
+    740,
+    700
+   ],
+   "speed": 0.6,
+   "blend": {
+    "dark": "lighten",
+    "paper": "darken"
+   },
+   "title_line_max_chars_with_art": 14
+  },
+  "audio_insert": "source audio pauses for the 3.6 s card (insert); music bed pre-roll 1.2 s / post-roll 0.8 s"
+ },
+ "intro": {
+  "duration_s": 23.28,
+  "beats_s": {
+   "sting": [
+    0,
+    2.4
+   ],
+   "title": [
+    2.4,
+    8.0
+   ],
+   "teaser": [
+    8.0,
+    22.4
+   ],
+   "handoff": [
+    22.4,
+    23.28
+   ]
+  },
+  "teaser": "3 moments x 4-6 s, each in its own treatment (live sketch / board+hero / face), the real chat of those minutes, tag «ЛУЧШЕЕ ИЗ ЭФИРА»",
+  "kicker": "ОТКРЫТЫЙ ЭФИР · <ДД.ММ.ГГГГ>",
+  "title": [
+   "<Заголовок, >",
+   "<акцент>"
+  ],
+  "subtitle": "<подзаголовок эфира>",
+  "host": {
+   "name": "<Имя Фамилия>",
+   "role": "<роль · компания>"
+  },
+  "teaser_tag": "ЛУЧШЕЕ ИЗ ЭФИРА",
+  "underline_x1": 1180,
+  "rays_at": [
+   1250,
+   400
+  ],
+  "note_fields": "kicker/title[0]+title[1] (accent colour)/subtitle/host are drawn by components/Intro.tsx; underline_x1 = right end of the marker underline under the subtitle, rays_at = sparkle rays near the title end (tune to the text length)"
+ },
+ "outro": {
+  "duration_s": 16,
+  "stagger_s": [
+   0.0,
+   0.4,
+   1.0,
+   1.8,
+   2.4
+  ],
+  "hold_min_s": 8,
+  "kicker": "<БРЕНД · ПРОДУКТ>",
+  "headline_lines": [
+   "<Призыв —>",
+   "<вторая строка>"
+  ],
+  "underline_w": 300,
+  "cta_link": "<короткая ссылка, 56+ px>",
+  "next_label": "СЛЕДУЮЩИЙ БЕСПЛАТНЫЙ ЭФИР",
+  "next_when": "<день, дата>",
+  "next_time": "· <ЧЧ:ММ МСК>",
+  "extra_label": "<Бот:>",
+  "extra_value": "<t.me/...>",
+  "qr_main": "brand/qr-main.png",
+  "qr_main_caption": "<Написать ведущему>",
+  "qr_small": "brand/qr-small.png",
+  "qr_small_caption": [
+   "<бот>",
+   "<имя бота>"
+  ],
+  "note_fields": "QR PNGs are generated from URLs (scripts/webinar/deliver/make_qr.py); headline max 2 lines at 84 px - one line ran under the QR card in v1"
+ },
+ "audio": {
+  "program_lufs": -16.0,
+  "true_peak_dbtp": -1.5,
+  "lra_max": 8,
+  "loudnorm": "two-pass, linear=true, measured on the final mix",
+  "dialog_chain": "highpass=f=80, (afftdn only if noise floor > -55 dBFS), acompressor threshold=-20dB ratio=2.5 attack=15 release=250, per-part gain match before concat",
+  "music_bed": {
+   "only_under": [
+    "intro",
+    "outro",
+    "chapter_card"
+   ],
+   "level_alone_lufs": -20,
+   "level_under_voice_lufs": -30,
+   "fade_in_s": 0.5,
+   "fade_out_s": 1.0,
+   "chapter_pre_roll_s": 1.2,
+   "chapter_post_roll_s": 0.8,
+   "track": "own track audio/music/bed.wav (e.g. ACE-Step 1.5, seed in the file name, ~75 s, ~-20.7 LUFS, no vocals); risers of the reference track were at 15.2/31.5/47.3/63.2 s -> put them on cuts; see style.example.md",
+   "duck": "volume envelope (not sidechain): -10 dB under voice, 0.35 s ramps"
+  },
+  "sfx": {
+   "allowed": [
+    "chapter underline marker scribble -32 LUFS",
+    "highlight chat bubble soft paper tick -38 dBFS"
+   ],
+   "forbidden": [
+    "whoosh on every morph",
+    "pop on every chat bubble",
+    "game UI bleeps"
+   ]
+  },
+  "audio_crossfade_ms_on_cuts": 20,
+  "part_gain_db": {
+   "part1": 5.4,
+   "part2": 4.7,
+   "source": "measured per part by the align stage (ebur128 of each Zoom part vs the -16 LUFS recorder pieces) - values of the reference webinar"
+  }
+ },
+ "render_architecture": {
+  "name": "E: full-frame Remotion 'Program' composition driven by an EDL JSON (remotion/src/program/types.ts)",
+  "ingest": "ffmpeg NVDEC/NVENC: 4K -> main clips 2560x1440 (601->709 once) + cam clips 640x360 from the 4K tile; clean slides from the PDF; art from deck/art",
+  "render": "render_program.mjs: ONE node process per worker (bundle once, one browser), renderMedia h264 crf 16, jpeg 94; skip-if-exists per chunk; 5-min chunks cut at plan boundaries",
+  "parallel": "several worker processes at once: measured 2 procs x c10 = 25.6-38.1 fps aggregate vs 21.3 fps single proc c16 (style.md §16); GPU only for ingest/concat",
+  "output": "concat -c copy of chunks + separately mixed audio (mix_audio.py: loudnorm -16 LUFS, TP -1.5)",
+  "why_not_C_D": "ffmpeg compositing (v1.2) was faster but could not carry live sketches, content-space marks, punch-ins with marks and reactions without simplification; the owner forbade simplification"
+ },
+ "encode": {
+  "chunk": "Remotion renderMedia h264 (libx264 crf 16, preset medium), yuv420p, bt709",
+  "final": "concat -c copy; AAC 48 kHz 192 kbit/s; +faststart",
+  "chunk_seconds": 300
+ },
+ "layout_rules": {
+  "lower_third_anchor": "BOTTOM-LEFT point of the plate (inside the main feed, 24 px from its bottom-left corner)",
+  "cam_source": "PiP pixels ALWAYS come from the 4K source crop (tile is 356x200 @4K = native camera res). Never from the 1080p proxy (tile there is ~178x100 -> 2x upscale = mush).",
+  "cam_cutout": "PiP gets a 4 px stage-coloured ring on its inner (left/bottom) edges so it reads as a cut-out of the frame, outer corner radius = frame radius, inner corners radius 18.",
+  "burned_names": "In side-strip share mode the participant list (x>=3504 @4K, y>=188) holds private full names: the main crop must end at x<3504. Never show it.",
+  "cam_slot": "studio/board: camera on top of the chat column (clean slide fully visible); face: camera 576x324 punch-in; studio_tile/full_tile only for P1 Zoom-share feeds (PiP exactly over the burned tile). P2 shares cropped x<3440 (no tile, no names).",
+  "cam_grow": "punch-in on the face: layout face (cam 1.6x, 4-8 s) for emphasis; face_xl (camera and slide swap, 3.5x, 3-6 s) only for the strongest highlights (punchline, laugh, raffle reaction). Morph 15-18 f in and out.",
+  "tags": "tags/chips only where the content corner under them is empty; never over live UI (drum, demos)"
+ },
+ "$owner_directive": "24.09 14:40: «упрощение мне не нужно, нужно суперкрутое видео». No element is dropped for speed; speed comes from parallel chunks.",
+ "hero": {
+  "font": "ui 800",
+  "px_short": 60,
+  "px_long": 52,
+  "long_if_chars_gt": 30,
+  "em_color": "#F26941",
+  "kicker": {
+   "font": "mono 700",
+   "px": 15,
+   "tracking": "0.18em"
+  },
+  "reveal_frames": 14,
+  "underline_frames": 14,
+  "underline_stroke": 6,
+  "exit_frames": 7,
+  "hold_s": [
+   2,
+   4
+  ],
+  "max_rate": "1 per 3-4 min",
+  "replaces_captions": true
+ },
+ "treatments": {
+  "a_clean": {
+   "what": "clean slide render (PDF 1920x1080) instead of the blurry Zoom share, studio or full",
+   "drift_per_10s": [
+    0.015,
+    0.03
+   ],
+   "drift_alternate": [
+    "centre",
+    "left third"
+   ]
+  },
+  "b_live_sketch": {
+   "engine": "sketch-course-video trace.py -> sketch/NNN.json (per-element strokes, Gemini semantic boxes + cue words) -> SketchReveal.tsx (SVG mask strokeDashoffset reveals the ORIGINAL art)",
+   "beat": "element start = frame of its cue word +-2",
+   "dur_frames": "16..56 by ink amount (defaultDur), title 24, rest 12",
+   "pen": "visible marker on max 1-2 elements per slide",
+   "settle": "8-frame crossfade to the clean slide after the last element (+6 f)",
+   "when": "first appearance of a slide explained point by point; never two live sketches back-to-back without a clean-slide pause"
+  },
+  "c_inside": {
+   "marks": {
+    "circle": {
+     "dur": 16,
+     "pad_px": [
+      18,
+      14
+     ]
+    },
+    "underline": {
+     "dur": 12,
+     "offset_px": 8
+    },
+    "check": {
+     "dur": 9,
+     "color": "#FFD014"
+    },
+    "arrow": {
+     "dur": 14,
+     "len_px": 150
+    },
+    "box": {
+     "dur": 16
+    },
+    "strike": {
+     "dur": 12
+    },
+    "spotlight": {
+     "dim": 0.5,
+     "fade": 10,
+     "pad_px": 12
+    },
+    "pulse": {
+     "period": 25,
+     "cycles": 2
+    }
+   },
+   "stroke_stage_px": 7,
+   "color": "#F26941",
+   "fade_out_frames": 8,
+   "space": "content px (follows punch-ins and morphs)",
+   "punch": {
+    "in_frames": [
+     20,
+     30
+    ],
+    "creep_frames": 150,
+    "out_frames": [
+     20,
+     36
+    ],
+    "ease": "easeInOutCubic",
+    "rule": "frame edges never slice a text line (top below the headline, bottom above the next caption)",
+    "max_upscale_vs_4k": 1.15
+   }
+  },
+  "d_around": {
+   "layout": "board",
+   "doodles": {
+    "label": {
+     "font": "hand 700",
+     "px": [
+      34,
+      46
+     ],
+     "rotate_deg": [
+      -6,
+      -1
+     ],
+     "reveal_frames": 16,
+     "color": "#F4F1EA or #FFD014"
+    },
+    "arrow": {
+     "stroke": 6,
+     "dur": 14,
+     "rule": "tip in content px of the slide; the path runs over empty stage/slide areas, never across slide text"
+    },
+    "stat": {
+     "font": "ui 800",
+     "px": 78,
+     "count_frames": 28,
+     "color": "#F26941"
+    },
+    "stars": {
+     "strokes": "handRays x2",
+     "twinkle": 0.12
+    },
+    "bracket": {
+     "stroke": 5
+    }
+   },
+   "hold_s": [
+    5,
+    15
+   ],
+   "text_rule": "only what is said or written on the slide"
+  },
+  "choice": "by meaning of the speech, not by timer: enumeration -> b; 'вот здесь'/number/conclusion -> c; metaphor/promise/link -> d; demo/long story -> a + face",
+  "targets_2h": {
+   "live_sketch_slides": [
+    25,
+    35
+   ],
+   "marks_per_shown_slide": [
+    1,
+    3
+   ],
+   "board": [
+    8,
+    15
+   ],
+   "face": "all 25 highlights of vision/scenes.json"
+  }
+ },
+ "poll": {
+  "place": "pinned at the top of the chat column under the header; the bubble list is pushed down by the card height",
+  "height": "118 + 50 * options",
+  "radius": 18,
+  "bg": "linear-gradient(#1D2046,#15173A)",
+  "edge": "2px coral_line",
+  "kicker": "mono 14 «● ОПРОС В ЧАТЕ · N отв.»",
+  "title_px": 25,
+  "row_h": 50,
+  "key_circle": 34,
+  "bar_radius": 9,
+  "bar_colors": {
+   "leader_closing": "#F26941",
+   "leader": "rgba(242,105,65,0.55)",
+   "other": "rgba(201,203,224,0.30)"
+  },
+  "count_bump_spring": {
+   "damping": 10,
+   "stiffness": 220,
+   "mass": 0.5
+  },
+  "enter_spring": {
+   "damping": 22,
+   "stiffness": 150,
+   "mass": 0.9
+  },
+  "exit_frames": 12,
+  "leader_mark_before_end_frames": 50,
+  "sources": "chat/chat_stats.json polls (16): pill K/S start+final, level 1/2/3, правда-или-ИИ A-F (reveal tick), фото-или-ИИ pairs, year 1956/1986/2012, plus-counters, rating 1-10 (average counts up)"
+ },
+ "reactions": {
+  "source": "chat/reactions_parsed.json (Zoom chat.txt, 127 events with target message); video_t = chat_msk - 23 s - part_t0",
+  "icons": {
+   "❤️": "heart",
+   "🔥": "fire",
+   "😁 😂 🤣 😄 😅": "laugh",
+   "👍": "thumb",
+   "👏": "clap",
+   "🎉": "party",
+   "💯": "hundred",
+   "💪": "star",
+   "🙏": "heart"
+  },
+  "draw_frames": 10,
+  "fill_frames": [
+   7,
+   13
+  ],
+  "life_frames": 70,
+  "rise_px": 300,
+  "sway_px": 14,
+  "rotate_deg": 12,
+  "size_px": [
+   58,
+   76
+  ],
+  "origin": "bottom of the chat column (else under the cam, else the main window corner)",
+  "badge": "counter on the target bubble (chat.reaction_badge)",
+  "on_screen_zoom_reactions": "NOT checked in the style task; the EDL builder scans frames (Gemini, 2 s step) and echoes them the same way"
+ },
+ "winner": {
+  "place": "caption band centre",
+  "kicker": "«ПОБЕДИТЕЛЬ · ПРИЗ n ИЗ m»",
+  "name_px": 44,
+  "prize_chip": "coral bg, navy 800 24 px",
+  "icon": "party",
+  "spring": {
+   "damping": 12,
+   "stiffness": 140,
+   "mass": 0.8
+  },
+  "hold_s": [
+   6,
+   8
+  ]
+ },
+ "confetti": {
+  "count": [
+   80,
+   110
+  ],
+  "life_frames": 84,
+  "drag": 0.955,
+  "gravity_px_per_f2": 0.17,
+  "shapes": [
+   "paper rect",
+   "hand squiggle",
+   "dot",
+   "4-point star"
+  ],
+  "colors": [
+   "#F26941",
+   "#FFD014",
+   "#C9CBE0",
+   "#F4F1EA",
+   "#F29BB8"
+  ],
+  "when": "raffle «тадам» and final results only"
+ },
+ "showcases": {
+  "dir": "<job>/style/showcase/final",
+  "files": [
+   "sc1_intro.mp4",
+   "sc2_poll.mp4",
+   "sc3_chapter.mp4",
+   "sc4_drum.mp4"
+  ],
+  "edl": "style/showcase/edl/*.json",
+  "builder": "EDL of 4 short showcases (intro, poll, chapter+video, event) cut from the full EDL by scripts/webinar/edl/make_tests.py"
+ },
+ "brand": {
+  "note": "public paths inside public_lite/ (brand/ folder of the job). mark = SVG path drawn as a stroke in the intro sting, then filled; w/h = its viewBox units. The example mark is the Vibe Academy 'V' with code brackets - replace with your own or set mark to null.",
+  "logo": "brand/logo-on-dark.png",
+  "mark": {
+   "path": "M0 0 h13 v3.4 h-3.3 L16 21.6 L21.3 3.4 H18 V0 h13 v3.4 h-3.1 L18.6 29 h-5.2 L3.1 3.4 H0z",
+   "bracket_left": "M5.6 20.4 L2.6 24.4 L5.6 28.4",
+   "bracket_right": "M26.4 20.4 L29.4 24.4 L26.4 28.4",
+   "w": 31,
+   "h": 29
+  }
+ }
+}

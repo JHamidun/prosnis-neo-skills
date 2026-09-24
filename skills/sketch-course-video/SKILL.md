@@ -64,6 +64,18 @@ Turn real recorded lessons into readable, deliberately paced videos. Reuse the a
 - [batch-qa.md](references/batch-qa.md): batching, proof/full-render checks and delivery gate.
 - [provenance.md](references/provenance.md): scripts and automation boundaries.
 
+## Stories from a webinar recording (story-v3)
+
+Five 1080×1920 stories cut from a webinar's highlights (quiz, case, idea, event, invite): the live screen in a panel
+with zooms and step spotlights, the speaker's face circle, karaoke captions, graphite-pencil drawings revealed along
+their contours, chat/tally/stat/note callouts, a CTA scene with a button. Route (Russian):
+[webinar-stories.md](references/webinar-stories.md); project template: `templates/story-v3/` (Remotion `StoryV3`,
+`tools/prep_from_recording.py`, `render.py`, `gen_art.py`, `trace_art.py`, `fix_av.py`, `STORYBOARD.md`). Inputs come
+from the webinar montage job of skill `video-editor` (`references/webinar-montage.md`). Always finish a render with
+`tools/fix_av.py`: Remotion's AAC keeps 2048 priming samples, the soundtrack plays 42.7 ms late. Whole-slide element
+tracing for the long montage lives in `video-editor/scripts/webinar/slides/sketch_slide.py` (same engine,
+`order_strokes(..., lettering=True)` for text).
+
 ## Bundled executable toolkit
 
 `project.py` creates an isolated project; `media_tools.py` inventories, estimates audio offsets and unwraps notes; `raw_edit.py` assembles explicit A/V cuts and layers; `prepare.py` extracts stroke masks; `pipeline.py` type-checks/builds/tests/renders/composites/verifies; `captions.py` formats SRT into measured two-line ASS with optional time-specific positions; `batch.py` runs bounded sequential jobs. `transcribe.py` optionally uses an existing local faster-whisper model (extra dependency, no automatic download), or use skill `deepgram` for a draft. `assets/remotion/SketchPanel.tsx` and `scripts/trace.py` contain the actual drawing engine. Tests ship with the scripts: `python -B -m unittest discover -s <skill>/scripts/tests -v`.

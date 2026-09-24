@@ -1,0 +1,19 @@
+{
+ "$note": "Applied to paragraph text after assembly (regex, Python syntax). expect = minimum number of hits; the builder FAILS if fewer (the phrase changed upstream -> review). Keep the list short and explain each item.",
+ "redactions": [
+  {
+   "id": "private-surname",
+   "pattern": "<Имя Фамилия участника>",
+   "replace": "<Имя>",
+   "expect": 1,
+   "reason": "приватность: участники — только по имени"
+  },
+  {
+   "id": "owner-rule-1",
+   "pattern": "<фраза, которую владелец попросил убрать>",
+   "replace": "<замена>",
+   "expect": 1,
+   "reason": "<правило владельца>"
+  }
+ ]
+}
